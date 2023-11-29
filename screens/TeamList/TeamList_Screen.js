@@ -1,13 +1,15 @@
-import React, { useContext, useEffect } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
-import { TextInput, Button, Text } from "react-native-paper";
+import React, { useContext, useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { apiGetListTeamData } from "../../api/apiGetListTeamData";
-import TeamList_Element from "./TeamList_Element";
 import TeamList_List from "./TeamList_List";
 
 const TeamList_Screen = ({ navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
+    const [listTeamData, setListTeamData] = useState([]);
+    useEffect(() => {
+        loadListTeamData();
+    }, []);
     useEffect(() => {
         if (accountData === false) {
             navigation.replace("Login_Screen");
@@ -15,7 +17,10 @@ const TeamList_Screen = ({ navigation }) => {
         }
     }, [accountData, navigation]);
 
-    const listTeamData = apiGetListTeamData(accountData.token);
+    const loadListTeamData = async () => {
+        const l = await apiGetListTeamData(accountData.token);
+        setListTeamData(l);
+    };
 
     return (
         <View>
