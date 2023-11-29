@@ -15,11 +15,11 @@ const Login_Screen = ({ navigation }) => {
     }, [accountData, navigation]);
 
     const [errorMessage, setError] = useState("");
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const onLogIn = () => {
-        const newAccountData = apiOnLogIn(username, password);
+    const onLogIn = async () => {
+        const newAccountData = await apiOnLogIn(email, password);
         if (newAccountData === false) {
             setPassword("");
             setError("Błędne dane");
@@ -32,9 +32,9 @@ const Login_Screen = ({ navigation }) => {
         <View>
             <Text variant="titleMedium">{errorMessage}</Text>
             <TextInput
-                label="Username"
-                value={username}
-                onChangeText={(text) => setUsername(text)}
+                label="Email"
+                value={email}
+                onChangeText={(text) => setEmail(text)}
             />
             <TextInput
                 label="Password"
@@ -43,7 +43,13 @@ const Login_Screen = ({ navigation }) => {
                 onChangeText={(text) => setPassword(text)}
             />
             <Button mode="contained" onPress={onLogIn}>
-                Połącz
+                Log in
+            </Button>
+            <Button
+                mode="contained"
+                onPress={() => navigation.push("Signup_Screen")}
+            >
+                Sign up
             </Button>
         </View>
     );

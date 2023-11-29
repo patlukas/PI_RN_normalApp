@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login_Screen from "./screens/Login/Login_Screen";
+import Signup_Screen from "./screens/Signup/Signup_Screen";
 import TeamList_Screen from "./screens/TeamList/TeamList_Screen";
 import Main_Screen from "./screens/Main/Main_Screen";
 import Team_Screen from "./screens/Team/Team_Screen";
@@ -16,6 +17,9 @@ import { useState } from "react";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+    // global.apiLink = "http://localhost:8080/api/";
+    global.apiLink = "http://192.168.1.4:8080/api/";
+
     const [accountData, setAccountData] = useState({
         token: "12345",
         isPlayer: false,
@@ -32,6 +36,11 @@ export default function App() {
                             name="Login_Screen"
                             component={Login_Screen}
                             options={{ title: "Ekran logowania" }}
+                        />
+                        <Stack.Screen
+                            name="Signup_Screen"
+                            component={Signup_Screen}
+                            options={{ title: "Ekran rejestracji" }}
                         />
                         <Stack.Screen
                             name="Main_Screen"

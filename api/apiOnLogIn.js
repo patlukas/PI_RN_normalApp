@@ -1,9 +1,20 @@
-export function apiOnLogIn(username, password) {
-    if (username == "1") {
-        return { token: "111111111", isPlayer: true };
-    }
-    if (username == "2") {
-        return { token: "123456789", isPlayer: false };
+import axios from "axios";
+
+export async function apiOnLogIn(email, password) {
+    try {
+        const result = await axios.get(global.apiLink + "Users", {});
+        if (result.status == 200) {
+            for (const user of result.data) {
+                console.log(user.email, email);
+                if (user.email == email && password != "qwerty") {
+                    let isPlayer = false;
+                    if (user.playerId !== null) isPlayer = true;
+                    return { token: "123456789", isPlayer };
+                }
+            }
+        }
+    } catch (error) {
+        console.log(error);
     }
     return false;
 }
