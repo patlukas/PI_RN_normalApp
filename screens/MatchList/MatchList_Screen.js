@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { TextInput, Button, Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
@@ -7,6 +7,10 @@ import MatchList_List from "./MatchList_List";
 
 const MatchList_Screen = ({ navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
+    const [listMatchData, setListMatchData] = useState([]);
+    useEffect(() => {
+        loadListMatchData();
+    }, []);
     useEffect(() => {
         if (accountData === false) {
             navigation.replace("Login_Screen");
@@ -14,9 +18,12 @@ const MatchList_Screen = ({ navigation }) => {
         }
     }, [accountData, navigation]);
 
-    const lisMatchesData = apiGetListMatchesData(accountData.token);
+    const loadListMatchData = async () => {
+        const l = await apiGetListMatchesData(accountData.token);
+        setListMatchData(l);
+    };
 
-    return <MatchList_List data={lisMatchesData} navigation={navigation} />;
+    return <MatchList_List data={listMatchData} navigation={navigation} />;
 };
 
 const styles = StyleSheet.create({});
