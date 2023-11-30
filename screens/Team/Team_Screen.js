@@ -10,6 +10,7 @@ import TournamentList_List from "../TournamentList/TournamentList_List";
 import PlayerList_List from "../PlayerList/PlayerList_List";
 import PostList_List from "../PostList/PostList_List";
 import { apiGetListPlayerData } from "../../api/apiGetListPlayerData";
+import { apiGetListMatchesData } from "../../api/apiGetListMatchesData";
 
 const Team_Screen = ({ route, navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
@@ -17,6 +18,7 @@ const Team_Screen = ({ route, navigation }) => {
     const [teamData, setTeamData] = useState(false);
     const [listPost, setListPost] = useState([]);
     const [listPlayer, setListPlayer] = useState([]);
+    const [listMatches, setListMatches] = useState([]);
     useEffect(() => {
         loadTeamData();
     }, []);
@@ -32,21 +34,17 @@ const Team_Screen = ({ route, navigation }) => {
         setTeamData(await apiGetTeamData(teamId, accountData.token));
         setListPost(await apiGetTeamListPosts(teamId, accountData.token));
         setListPlayer(await apiGetListPlayerData(accountData.token, teamId));
+        setListMatches(await apiGetListMatchesData(accountData.token, teamId));
     };
 
-    if (teamData === false) {
-        return null;
-    }
+    if (teamData === false) return null;
 
     let detail_el = [];
     if (detailIndex == 0) {
         detail_el = <PostList_List data={listPost} navigation={navigation} />;
     } else if (detailIndex == 1) {
         detail_el = (
-            <MatchList_List
-                data={teamData.listMatches}
-                navigation={navigation}
-            />
+            <MatchList_List data={listMatches} navigation={navigation} />
         );
     } else if (detailIndex == 2) {
         detail_el = (

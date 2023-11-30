@@ -1,7 +1,7 @@
 import axios from "axios";
 import { apiGetListTeamData } from "./apiGetListTeamData";
 
-export async function apiGetListMatchesData(token) {
+export async function apiGetListMatchesData(token, teamId = null) {
     let listMatches = [];
     const listTeam = await apiGetListTeamData();
     const teamsIdToName = {};
@@ -12,15 +12,16 @@ export async function apiGetListMatchesData(token) {
         const result = await axios.get(global.apiLink + "Games", {});
         if (result.status == 200) {
             for (const match of result.data) {
+                const { id, winnerId, team1Id, team2Id, startDate } = match;
+                if (teamId !== null && teamId !== team1Id && teamId !== team2Id)
+                    continue;
                 let winner = -1;
-                if (match.winnerId != 0 && match.winnerId == match.team1Id)
-                    winner = 0;
-                if (match.winnerId != 0 && match.winnerId == match.team2Id)
-                    winner = 1;
-                let date = match.startDate.split("T")[0];
+                if (winnerId != 0 && winnerId == team1Id) winner = 0;
+                if (winnerId != 0 && winnerId == team2Id) winner = 1;
+                let date = startDate.split("T")[0];
                 if (date === "0001-01-01") date = "";
                 listMatches.push({
-                    id: match.id,
+                    id,
                     nameH: teamsIdToName[match.team1Id],
                     nameG: teamsIdToName[match.team2Id],
                     resultH: match.team1Sets,
