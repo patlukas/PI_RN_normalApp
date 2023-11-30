@@ -3,6 +3,7 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { TextInput, Button, Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { apiGetTeamData } from "../../api/apiGetTeamData";
+import { apiGetTeamListPosts } from "../../api/apiGetTeamListPosts";
 import Team_DetailBtn from "./Team_DetailBtn";
 import MatchList_List from "../MatchList/MatchList_List";
 import TournamentList_List from "../TournamentList/TournamentList_List";
@@ -11,6 +12,11 @@ import PostList_List from "../PostList/PostList_List";
 
 const Team_Screen = ({ route, navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
+    const [detailIndex, setDetailIndex] = useState(0);
+    const [listPost, setListPost] = useState([]);
+    useEffect(() => {
+        loadTeamData();
+    }, []);
     useEffect(() => {
         if (accountData === false) {
             navigation.replace("Login_Screen");
@@ -18,15 +24,17 @@ const Team_Screen = ({ route, navigation }) => {
         }
     }, [accountData, navigation]);
 
-    const [detailIndex, setDetailIndex] = useState(0);
+    const teamData = apiGetTeamData(route.params.id, accountData.token); // TODO
 
-    const teamData = apiGetTeamData(route.params.id, accountData.token);
+    const loadTeamData = async () => {
+        setListPost(
+            await apiGetTeamListPosts(route.params.id, accountData.token)
+        );
+    };
 
     let detail_el = [];
     if (detailIndex == 0) {
-        detail_el = (
-            <PostList_List data={teamData.listPosts} navigation={navigation} />
-        );
+        detail_el = <PostList_List data={listPost} navigation={navigation} />;
     } else if (detailIndex == 1) {
         detail_el = (
             <MatchList_List

@@ -1,23 +1,17 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import Card from "../../components/Card";
 
-const PostList_Element = ({ name, date, content }) => {
+const PostList_Element = ({ date, content, onPress }) => {
     return (
-        <View style={styles.post_container}>
-            <Text style={styles.post_name}>{name}</Text>
+        <Card backgroundColor="#ffc" onPress={onPress}>
             <Text style={styles.post_date}>{date}</Text>
             <Text style={styles.post_content}>{content}</Text>
-        </View>
+        </Card>
     );
 };
 
 const styles = StyleSheet.create({
-    post_container: {
-        width: "100%",
-        paddingVertical: "5%",
-        paddingHorizontal: 10,
-        borderBottomWidth: 2,
-    },
     post_name: {
         textAlign: "center",
         fontSize: 18,
