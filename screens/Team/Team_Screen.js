@@ -9,11 +9,14 @@ import MatchList_List from "../MatchList/MatchList_List";
 import TournamentList_List from "../TournamentList/TournamentList_List";
 import PlayerList_List from "../PlayerList/PlayerList_List";
 import PostList_List from "../PostList/PostList_List";
+import { apiGetListPlayerData } from "../../api/apiGetListPlayerData";
 
 const Team_Screen = ({ route, navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
     const [detailIndex, setDetailIndex] = useState(0);
+    const [teamData, setTeamData] = useState(false);
     const [listPost, setListPost] = useState([]);
+    const [listPlayer, setListPlayer] = useState([]);
     useEffect(() => {
         loadTeamData();
     }, []);
@@ -23,14 +26,17 @@ const Team_Screen = ({ route, navigation }) => {
             return () => {};
         }
     }, [accountData, navigation]);
-
-    const teamData = apiGetTeamData(route.params.id, accountData.token); // TODO
+    const teamId = route.params.id;
 
     const loadTeamData = async () => {
-        setListPost(
-            await apiGetTeamListPosts(route.params.id, accountData.token)
-        );
+        setTeamData(await apiGetTeamData(teamId, accountData.token));
+        setListPost(await apiGetTeamListPosts(teamId, accountData.token));
+        setListPlayer(await apiGetListPlayerData(accountData.token, teamId));
     };
+
+    if (teamData === false) {
+        return null;
+    }
 
     let detail_el = [];
     if (detailIndex == 0) {
@@ -50,7 +56,9 @@ const Team_Screen = ({ route, navigation }) => {
             />
         );
     } else if (detailIndex == 3) {
-        detail_el = <PlayerList_List data={teamData.listPlayers} />;
+        detail_el = (
+            <PlayerList_List data={listPlayer} navigation={navigation} />
+        );
     }
 
     return (

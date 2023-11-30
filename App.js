@@ -11,6 +11,7 @@ import MatchList_Screen from "./screens/MatchList/MatchList_Screen";
 import Match_Screen from "./screens/Match/Match_Screen";
 import TournamentList_Screen from "./screens/TournamentList/TournamentList_Screen";
 import Tournament_Screen from "./screens/Tournament/Tournament_Screen";
+import Player_Screen from "./screens/Player/Player_Screen";
 import Post_Screen from "./screens/Post/Post_Screen";
 import { AccountDataContext } from "./context/AccountDataContext";
 import { useState } from "react";
@@ -83,6 +84,11 @@ export default function App() {
                             name="Post_Screen"
                             component={Post_Screen}
                             options={{ title: "Post" }}
+                        />
+                        <Stack.Screen
+                            name="Player_Screen"
+                            component={Player_Screen}
+                            options={{ title: "Player" }}
                         />
                     </Stack.Navigator>
                 </NavigationContainer>

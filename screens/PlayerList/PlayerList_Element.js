@@ -1,22 +1,19 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import Card from "../../components/Card";
 
-const PlayerList_Element = ({ name, position }) => {
+const PlayerList_Element = ({ name, position, number, onPress }) => {
     return (
-        <View style={styles.player_container}>
+        <Card backgroundColor="#fcf" onPress={onPress}>
             <Text style={styles.player_name}>{name}</Text>
-            <Text style={styles.player_position}>{position}</Text>
-        </View>
+            <Text style={styles.player_position}>
+                {number} | {position}
+            </Text>
+        </Card>
     );
 };
 
 const styles = StyleSheet.create({
-    player_container: {
-        width: "100%",
-        paddingVertical: "5%",
-        paddingHorizontal: 10,
-        borderBottomWidth: 2,
-    },
     player_name: {
         textAlign: "center",
         fontSize: 18,

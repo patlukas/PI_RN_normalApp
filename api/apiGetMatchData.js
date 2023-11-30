@@ -39,7 +39,7 @@ export async function apiGetMatchData(id, token) {
             let winner = -1;
             if (winnerId !== null && winnerId === team1Id) winner = 0;
             if (winnerId !== null && winnerId === team2Id) winner = 1;
-            
+
             const date = startDate.split("T")[0];
             return {
                 id,
@@ -73,48 +73,10 @@ export async function apiGetMatchData(id, token) {
                         ],
                     },
                 ],
-                listPosts: [
-                    {
-                        name: "Player Name 1",
-                        date: "12.11.2022",
-                        content: "Hej",
-                    },
-                    {
-                        name: "Player Name 2",
-                        date: "11.11.2022",
-                        content: "Hej",
-                    },
-                ],
             };
         }
     } catch (error) {
         console.log(error);
     }
     return false;
-
-    return {
-        id: 1,
-        isEnd: false,
-        setNow: 3,
-        winner: 1,
-        date: "11.12.2022",
-        teams: [
-            {
-                id: 1,
-                name: "Team 1",
-                result: 0,
-                points: [25, 27, 17, 0, 0],
-            },
-            {
-                id: 2,
-                name: "Team 2",
-                result: 0,
-                points: [16, 25, 18, 0, 0],
-            },
-        ],
-        listPosts: [
-            { name: "Player Name 1", date: "12.11.2022", content: "Hej" },
-            { name: "Player Name 2", date: "11.11.2022", content: "Hej" },
-        ],
-    };
 }
