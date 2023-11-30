@@ -9,7 +9,7 @@ export async function apiOnLogIn(email, password) {
                 if (user.email == email && password != "qwerty") {
                     let isPlayer = false;
                     if (user.playerId !== null) isPlayer = true;
-                    return { token: "123456789", isPlayer };
+                    return { id: user.id, token: "123456789", isPlayer };
                 }
             }
         }

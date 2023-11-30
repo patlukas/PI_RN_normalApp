@@ -27,7 +27,7 @@ const Match_Detail = ({ teams, winner, setNow, date, onSelectTeam }) => {
         );
     }
     return (
-        <View>
+        <View style={styles.container}>
             <View style={styles.view_oneLine}>
                 <Match_Detail_Team
                     name={teams[0].name}
@@ -46,6 +46,9 @@ const Match_Detail = ({ teams, winner, setNow, date, onSelectTeam }) => {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        height: "auto",
+    },
     view_oneLine: {
         flexDirection: "row",
     },

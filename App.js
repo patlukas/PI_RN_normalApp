@@ -21,6 +21,7 @@ export default function App() {
     global.apiLink = "http://192.168.1.4:8080/api/";
 
     const [accountData, setAccountData] = useState({
+        id: 1,
         token: "12345",
         isPlayer: false,
     });
