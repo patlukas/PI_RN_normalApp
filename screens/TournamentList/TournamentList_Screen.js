@@ -19,7 +19,6 @@ const TournamentList_Screen = ({ navigation }) => {
 
     const loadListTournamentData = async () => {
         const l = await apiGetListTournamentData(accountData.token);
-        console.log(l)
         setListTournamentData(l);
     };
 
