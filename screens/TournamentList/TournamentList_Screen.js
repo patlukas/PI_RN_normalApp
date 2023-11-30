@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { apiGetListTournamentData } from "../../api/apiGetListTournamentData";
@@ -6,6 +6,10 @@ import TournamentList_List from "./TournamentList_List";
 
 const TournamentList_Screen = ({ navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
+    const [listTournamentData, setListTournamentData] = useState([]);
+    useEffect(() => {
+        loadListTournamentData();
+    }, []);
     useEffect(() => {
         if (accountData === false) {
             navigation.replace("Login_Screen");
@@ -13,11 +17,18 @@ const TournamentList_Screen = ({ navigation }) => {
         }
     }, [accountData, navigation]);
 
-    const listTournamentData = apiGetListTournamentData(accountData.token);
+    const loadListTournamentData = async () => {
+        const l = await apiGetListTournamentData(accountData.token);
+        console.log(l)
+        setListTournamentData(l);
+    };
 
     return (
         <View>
-            <TournamentList_List data={listTournamentData} navigation={navigation} />
+            <TournamentList_List
+                data={listTournamentData}
+                navigation={navigation}
+            />
         </View>
     );
 };

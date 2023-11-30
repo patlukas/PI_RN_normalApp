@@ -1,28 +1,24 @@
-export function apiGetListTournamentData(token) {
-    return [
-        {
-            id: 1,
-            name: "T 1",
-            city: "City 1",
-            date: "12.10.2023 - 13.11.2023"
-        },
-        {
-            id: 2,
-            name: "T 2",
-            city: "City 2",
-            date: "12.10.2023 - 13.11.2023"
-        },
-        {
-            id: 3,
-            name: "T 3",
-            city: "City 2",
-            date: "12.10.2023 - 13.11.2023"
-        },
-        {
-            id: 4,
-            name: "T 4",
-            city: "City 1",
-            date: "12.10.2023 - 13.11.2023"
-        },
-    ];
+import axios from "axios";
+
+export async function apiGetListTournamentData(token) {
+    let listTournaments = [];
+    try {
+        const result = await axios.get(global.apiLink + "Tournaments", {});
+        if (result.status == 200) {
+            console.log(result.data);
+            for (const tournament of result.data) {
+                const dateS = tournament.startDate.split("T")[0];
+                const dateE = tournament.endDate.split("T")[0];
+                listTournaments.push({
+                    id: tournament.id,
+                    name: tournament.name,
+                    city: tournament.city,
+                    date: dateS + "  --  " + dateE,
+                });
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+    return listTournaments;
 }
