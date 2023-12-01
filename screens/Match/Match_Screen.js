@@ -31,7 +31,7 @@ const Match_Screen = ({ route, navigation }) => {
     };
 
     const onAddComment = async (newComment) => {
-        const l = await apiAddCommentToMatch(
+        await apiAddCommentToMatch(
             accountData.id,
             route.params.id,
             accountData.token,

@@ -11,6 +11,7 @@ import PlayerList_List from "../PlayerList/PlayerList_List";
 import PostList_List from "../PostList/PostList_List";
 import { apiGetListPlayerData } from "../../api/apiGetListPlayerData";
 import { apiGetListMatchesData } from "../../api/apiGetListMatchesData";
+import { apiGetListTournamentData } from "../../api/apiGetListTournamentData";
 
 const Team_Screen = ({ route, navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
@@ -19,6 +20,7 @@ const Team_Screen = ({ route, navigation }) => {
     const [listPost, setListPost] = useState([]);
     const [listPlayer, setListPlayer] = useState([]);
     const [listMatches, setListMatches] = useState([]);
+    const [listTournament, setListTournament] = useState([]);
     useEffect(() => {
         loadTeamData();
     }, []);
@@ -35,6 +37,9 @@ const Team_Screen = ({ route, navigation }) => {
         setListPost(await apiGetTeamListPosts(teamId, accountData.token));
         setListPlayer(await apiGetListPlayerData(accountData.token, teamId));
         setListMatches(await apiGetListMatchesData(accountData.token, teamId));
+        setListTournament(
+            await apiGetListTournamentData(accountData.token, teamId)
+        );
     };
 
     if (teamData === false) return null;
@@ -49,7 +54,7 @@ const Team_Screen = ({ route, navigation }) => {
     } else if (detailIndex == 2) {
         detail_el = (
             <TournamentList_List
-                data={teamData.listTournaments}
+                data={listTournament}
                 navigation={navigation}
             />
         );
@@ -60,7 +65,7 @@ const Team_Screen = ({ route, navigation }) => {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <View style={styles.view_mainData}>
                 <Text style={styles.txt_name}>Name: {teamData.name}</Text>
                 <Text style={styles.txt_city}>City: {teamData.city}</Text>
@@ -88,13 +93,17 @@ const Team_Screen = ({ route, navigation }) => {
                     isSelected={detailIndex == 3}
                 />
             </View>
-            {detail_el}
+            <View style={styles.detailContainer}>{detail_el}</View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
     view_mainData: {
+        height: "auto",
         backgroundColor: "#ccf",
         paddingHorizontal: 15,
         paddingVertical: "5%",
@@ -110,6 +119,9 @@ const styles = StyleSheet.create({
     },
     Team_DetailBtnContainer: {
         flexDirection: "row",
+    },
+    detailContainer: {
+        flex: 1,
     },
 });
 

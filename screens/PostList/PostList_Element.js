@@ -12,11 +12,6 @@ const PostList_Element = ({ date, content, onPress }) => {
 };
 
 const styles = StyleSheet.create({
-    post_name: {
-        textAlign: "center",
-        fontSize: 18,
-        fontWeight: "bold",
-    },
     post_date: {
         textAlign: "center",
         fontSize: 16,
