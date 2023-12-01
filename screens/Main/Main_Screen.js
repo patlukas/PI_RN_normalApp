@@ -19,7 +19,6 @@ const Main_Screen = ({ navigation }) => {
 
     return (
         <View>
-            <Text>Main screen</Text>
             <Button
                 mode="contained"
                 onPress={() => navigation.push("TeamList_Screen")}
@@ -37,6 +36,12 @@ const Main_Screen = ({ navigation }) => {
                 onPress={() => navigation.push("TournamentList_Screen")}
             >
                 Lista turniejów
+            </Button>
+            <Button
+                mode="contained"
+                onPress={() => navigation.push("PlayerList_Screen")}
+            >
+                Lista zawodników
             </Button>
             <Button mode="contained" onPress={onLogout}>
                 Wyloguj

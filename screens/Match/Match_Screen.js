@@ -12,7 +12,7 @@ const Match_Screen = ({ route, navigation }) => {
     const [matchData, setMatchData] = useState(false);
     const [commentList, setCommentList] = useState([]);
     useEffect(() => {
-        loadMatchData();
+        setInterval(loadMatchData, 5000);
     }, []);
 
     const loadMatchData = async () => {
@@ -46,9 +46,7 @@ const Match_Screen = ({ route, navigation }) => {
         );
     };
 
-    if (matchData === false) {
-        return null;
-    }
+    if (matchData === false) return null;
 
     return (
         <View style={styles.container}>
