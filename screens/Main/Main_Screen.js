@@ -17,6 +17,36 @@ const Main_Screen = ({ navigation }) => {
         setAccountData(false);
     };
 
+    let myTeamBtn = null;
+    if (accountData.teamId !== null) {
+        myTeamBtn = (
+            <Button
+                mode="contained"
+                onPress={() =>
+                    navigation.push("Team_Screen", { id: accountData.teamId })
+                }
+            >
+                My team
+            </Button>
+        );
+    }
+
+    let myProfileBtn = null;
+    if (accountData.playerId !== null) {
+        myTeamBtn = (
+            <Button
+                mode="contained"
+                onPress={() =>
+                    navigation.push("Player_Screen", {
+                        id: accountData.playerId,
+                    })
+                }
+            >
+                My profile
+            </Button>
+        );
+    }
+
     return (
         <View>
             <Button
@@ -43,6 +73,8 @@ const Main_Screen = ({ navigation }) => {
             >
                 Lista zawodników
             </Button>
+            {myTeamBtn}
+            {myProfileBtn}
             <Button mode="contained" onPress={onLogout}>
                 Wyloguj
             </Button>

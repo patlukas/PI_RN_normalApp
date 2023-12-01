@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export async function apiGetTeamListPosts(teamId, token) {
-    console.log(teamId);
     let listPosts = [];
     try {
         const result = await axios.get(
@@ -20,6 +19,6 @@ export async function apiGetTeamListPosts(teamId, token) {
     } catch (error) {
         console.log(error);
     }
-    console.log(listPosts);
+    listPosts.sort((key = (a, b) => b.id - a.id));
     return listPosts;
 }

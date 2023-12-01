@@ -27,6 +27,8 @@ export default function App() {
         id: 1,
         token: "12345",
         isPlayer: false,
+        playerId: null,
+        teamId: null,
     });
     return (
         <>

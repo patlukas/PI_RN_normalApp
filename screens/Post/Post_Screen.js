@@ -5,7 +5,6 @@ import { apiGetPostData } from "../../api/apiGetPostData";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { apiAddCommentToPost } from "../../api/apiAddCommentToPost";
 import { apiGetListPostComments } from "../../api/apiGetListPostComments";
-// import { apiGetMatchData } from "../../api/apiGetMatchData";
 
 const Post_Screen = ({ route, navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);

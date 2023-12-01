@@ -7,9 +7,10 @@ export async function apiOnLogIn(email, password) {
             for (const user of result.data) {
                 console.log(user.email, email);
                 if (user.email == email && password != "qwerty") {
+                    const {id, teamId, playerId} = user;
                     let isPlayer = false;
                     if (user.playerId !== null) isPlayer = true;
-                    return { id: user.id, token: "123456789", isPlayer };
+                    return { id, token: "123456789", isPlayer, teamId, playerId };
                 }
             }
         }
