@@ -21,7 +21,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
     // global.apiLink = "http://localhost:8080/api/";
-    global.apiLink = "http://192.168.1.4:8080/api/";
+    global.apiLink = "http://192.168.0.199:8080/api/";
 
     const [accountData, setAccountData] = useState({
         id: 1,
@@ -46,7 +46,7 @@ export default function App() {
                         <Stack.Screen
                             name="Signup_Screen"
                             component={Signup_Screen}
-                            options={{ title: "Ekran rejestracji" }}
+                            options={{ title: "Registration" }}
                         />
                         <Stack.Screen
                             name="Main_Screen"

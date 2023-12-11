@@ -15,6 +15,7 @@ const Signup_Screen = ({ navigation }) => {
 
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const [username, setUsername] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -23,6 +24,7 @@ const Signup_Screen = ({ navigation }) => {
 
     const onSignUp = async () => {
         const message = await apiOnSignUp(
+            username,
             firstName,
             lastName,
             email,
@@ -33,8 +35,9 @@ const Signup_Screen = ({ navigation }) => {
             setSuccessMessage("");
             setErrorMessage(message);
         } else {
-            setSuccessMessage("Utworzono konto");
+            setSuccessMessage("Account created!");
             setErrorMessage("");
+            setUsername("");
             setFirstName("");
             setLastName("");
             setEmail("");
@@ -52,37 +55,46 @@ const Signup_Screen = ({ navigation }) => {
             <Text variant="titleMedium">{errorMessage}</Text>
             <Text variant="titleMedium">{successMessage}</Text>
             <TextInput
-                label="Firstname"
+                label="Username"
+                value={username}
+                autoCapitalize="none"
+                onChangeText={(text) => setUsername(text)}
+            />
+            <TextInput
+                label="First Name"
                 value={firstName}
                 onChangeText={(text) => setFirstName(text)}
             />
             <TextInput
-                label="Lastname"
+                label="Last Name"
                 value={lastName}
                 onChangeText={(text) => setLastName(text)}
             />
             <TextInput
-                label="E-mail"
+                label="E-Mail"
                 value={email}
+                autoCapitalize="none"
                 onChangeText={(text) => setEmail(text)}
             />
             <TextInput
                 label="Password"
                 value={password}
                 secureTextEntry={true}
+                autoCapitalize="none"
                 onChangeText={(text) => setPassword(text)}
             />
             <TextInput
-                label="Password again"
+                label="Repeat password"
                 value={password2}
                 secureTextEntry={true}
+                autoCapitalize="none"
                 onChangeText={(text) => setPassword2(text)}
             />
             <Button mode="contained" onPress={onSignUp}>
                 Sign Up
             </Button>
             <Button mode="contained" onPress={onReturnToLoginScreen}>
-                Return to login
+                Back to login
             </Button>
         </View>
     );
