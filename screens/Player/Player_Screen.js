@@ -5,6 +5,7 @@ import { apiGetPlayerData } from "../../api/apiGetPlayerData";
 import Player_Detail from "./Player_Detail";
 import PostList_List from "../PostList/PostList_List";
 import { apiGetPlayerListPosts } from "../../api/apiGetPlayerListPosts";
+import { apiAddPost } from "../../api/apiAddPost";
 
 const Player_Screen = ({ route, navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
@@ -27,13 +28,25 @@ const Player_Screen = ({ route, navigation }) => {
         navigation.navigate("Team_Screen", { id });
     };
 
+    const onAddPost = async (text) => {
+        await apiAddPost(accountData.id, text, accountData.token);
+        setListPosts(
+            await apiGetPlayerListPosts(route.params.id, accountData.token)
+        );
+    };
+
     return (
         <View>
             <Player_Detail
                 data={playerData}
                 onPressTeam={() => onPressTeam(playerData.id)}
             />
-            <PostList_List data={listPosts} navigation={navigation} />
+            <PostList_List
+                data={listPosts}
+                navigation={navigation}
+                canAddPost={route.params.id === accountData.playerId}
+                onAddPost={onAddPost}
+            />
         </View>
     );
 };

@@ -5,6 +5,7 @@ import { apiGetPostData } from "../../api/apiGetPostData";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { apiAddCommentToPost } from "../../api/apiAddCommentToPost";
 import { apiGetListPostComments } from "../../api/apiGetListPostComments";
+import { apiDelComment } from "../../api/apiDelComment";
 
 const Post_Screen = ({ route, navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
@@ -41,6 +42,17 @@ const Post_Screen = ({ route, navigation }) => {
         );
     };
 
+    const onDelComment = async (idComment) => {
+        await apiDelComment(accountData.token, idComment);
+        setListComments(
+            await apiGetListPostComments(
+                accountData.id,
+                route.params.id,
+                accountData.token
+            )
+        );
+    };
+
     if (postData === false) return null;
 
     return (
@@ -52,6 +64,7 @@ const Post_Screen = ({ route, navigation }) => {
             <CommentList_List
                 data={listComments}
                 onAddComment={(text) => onAddComment(text)}
+                onDelComment={onDelComment}
             />
         </View>
     );

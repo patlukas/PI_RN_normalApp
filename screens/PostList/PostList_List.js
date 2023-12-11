@@ -20,6 +20,7 @@ const PostList_List = ({
                 data={data}
                 renderItem={({ item }) => (
                     <PostList_Element
+                        name={item.name}
                         date={item.date}
                         content={item.text}
                         onPress={() => onSelectPost(item.id)}

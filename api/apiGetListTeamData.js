@@ -9,6 +9,7 @@ export async function apiGetListTeamData(token) {
                 listTeam.push({
                     id: team.id,
                     name: team.teamName,
+                    shortName: team.shortTeamName,
                     city: team.city,
                 });
             }

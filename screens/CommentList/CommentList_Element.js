@@ -1,12 +1,28 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { Button } from "react-native-paper";
 
-const CommentList_Element = ({ name, date, content }) => {
+const CommentList_Element = ({
+    name,
+    date,
+    content,
+    canDel = false,
+    onDel = () => {},
+}) => {
+    let delEl = null;
+    if (canDel) {
+        delEl = (
+            <Button mode="contained" onPress={onDel}>
+                Del
+            </Button>
+        );
+    }
     return (
         <View style={styles.post_container}>
             <Text style={styles.post_name}>{name}</Text>
             <Text style={styles.post_date}>{date}</Text>
             <Text style={styles.post_content}>{content}</Text>
+            {delEl}
         </View>
     );
 };

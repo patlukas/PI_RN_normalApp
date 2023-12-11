@@ -6,12 +6,15 @@ import { apiAddCommentToMatch } from "../../api/apiAddCommentToMatch";
 import Match_Detail from "./Match_Detail";
 import CommentList_List from "../CommentList/CommentList_List";
 import { apiGetListMatchComments } from "../../api/apiGetListMatchComments";
+import { apiDelComment } from "../../api/apiDelComment";
+import { apiDelGameComment } from "../../api/apiDelGameComment";
 
 const Match_Screen = ({ route, navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
     const [matchData, setMatchData] = useState(false);
     const [commentList, setCommentList] = useState([]);
     useEffect(() => {
+        loadMatchData();
         setInterval(loadMatchData, 5000);
     }, []);
 
@@ -46,6 +49,17 @@ const Match_Screen = ({ route, navigation }) => {
         );
     };
 
+    const onDelComment = async (idComment) => {
+        await apiDelGameComment(accountData.token, route.params.id, idComment);
+        setCommentList(
+            await apiGetListMatchComments(
+                accountData.id,
+                route.params.id,
+                accountData.token
+            )
+        );
+    };
+
     if (matchData === false) return null;
 
     return (
@@ -57,7 +71,11 @@ const Match_Screen = ({ route, navigation }) => {
                 date={matchData.date}
                 onSelectTeam={onSelectTeam}
             />
-            <CommentList_List data={commentList} onAddComment={onAddComment} />
+            <CommentList_List
+                data={commentList}
+                onAddComment={onAddComment}
+                onDelComment={onDelComment}
+            />
         </View>
     );
 };

@@ -19,5 +19,6 @@ export async function apiGetPlayerListPosts(playerId, token) {
     } catch (error) {
         console.log(error);
     }
+    listPosts.sort((key = (a, b) => b.id - a.id));
     return listPosts;
 }
