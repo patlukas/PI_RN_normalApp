@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, View } from "react-native";
 import PostList_Element from "./PostList_Element";
 import PostList_AddPost from "./PostList_AddPost";
 
@@ -23,6 +23,7 @@ const PostList_List = ({
                         name={item.name}
                         date={item.date}
                         content={item.text}
+                        comments={item.comments}
                         onPress={() => onSelectPost(item.id)}
                     />
                 )}
@@ -30,7 +31,5 @@ const PostList_List = ({
         </View>
     );
 };
-
-const styles = StyleSheet.create({});
 
 export default PostList_List;

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { TextInput, Button, Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import { apiGetListPosts } from "../../api/apiGetListPosts";
+import { api_post_get_listPost } from "../../api/api_post_get_listPost";
 import PostList_List from "../PostList/PostList_List";
 
 const Main_Screen = ({ navigation }) => {
@@ -13,11 +13,10 @@ const Main_Screen = ({ navigation }) => {
     }, []);
 
     const loadData = async () => {
-        setListPost(await apiGetListPosts(accountData.token));
+        setListPost(await api_post_get_listPost(accountData.token));
     };
     useEffect(() => {
         if (accountData === false) {
-            console.log("No login");
             navigation.replace("Login_Screen");
             return () => {};
         }
