@@ -23,13 +23,7 @@ export default function App() {
     // global.apiLink = "http://localhost:8080/api/";
     global.apiLink = "http://192.168.0.199:8080/api/";
 
-    const [accountData, setAccountData] = useState({
-        id: 1,
-        token: "12345",
-        isPlayer: false,
-        playerId: null,
-        teamId: null,
-    });
+    const [accountData, setAccountData] = useState(false);
     return (
         <>
             <StatusBar style="auto" />
@@ -51,7 +45,7 @@ export default function App() {
                         <Stack.Screen
                             name="Main_Screen"
                             component={Main_Screen}
-                            options={{ title: "Glówny ekran" }}
+                            options={{ title: "Main screen" }}
                         />
                         <Stack.Screen
                             name="TeamList_Screen"

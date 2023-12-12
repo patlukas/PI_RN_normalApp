@@ -1,17 +1,29 @@
 import axios from "axios";
 
-export async function apiOnLogIn(email, password) {
+export async function apiOnLogIn(username, password) {
     try {
-        const result = await axios.get(global.apiLink + "Users", {});
+        const result = await axios.post(global.apiLink + "Auth/Login", {
+            username,
+            password,
+        });
         if (result.status == 200) {
-            for (const user of result.data) {
-                console.log(user.email, email);
-                if (user.email == email && password != "qwerty") {
-                    const {id, teamId, playerId} = user;
-                    let isPlayer = false;
-                    if (user.playerId !== null) isPlayer = true;
-                    return { id, token: "123456789", isPlayer, teamId, playerId };
-                }
+            const { user, token } = result.data;
+            const { id, userName, firstName, lastName, email, imageURL } = user;
+            const result2 = await axios.get(global.apiLink + "Users/" + id, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            if (result2.status == 200) {
+                return {
+                    id,
+                    token,
+                    username: userName,
+                    firstName,
+                    lastName,
+                    email,
+                    imageURL,
+                    playerId: result2.data.playerId,
+                    teamId: result2.data.teamId,
+                };
             }
         }
     } catch (error) {

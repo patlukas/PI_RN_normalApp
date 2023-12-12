@@ -8,21 +8,20 @@ const Login_Screen = ({ navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
     useEffect(() => {
         if (accountData !== false) {
-            console.log("login");
             navigation.replace("Main_Screen");
             return () => {};
         }
     }, [accountData, navigation]);
 
     const [errorMessage, setError] = useState("");
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const onLogIn = async () => {
-        const newAccountData = await apiOnLogIn(email, password);
+        const newAccountData = await apiOnLogIn(username, password);
         if (newAccountData === false) {
             setPassword("");
-            setError("Błędne dane");
+            setError("Incorrect login details!");
         } else {
             setAccountData(newAccountData);
         }
@@ -32,14 +31,16 @@ const Login_Screen = ({ navigation }) => {
         <View>
             <Text variant="titleMedium">{errorMessage}</Text>
             <TextInput
-                label="Email"
-                value={email}
-                onChangeText={(text) => setEmail(text)}
+                label="Username"
+                value={username}
+                autoCapitalize="none"
+                onChangeText={(text) => setUsername(text)}
             />
             <TextInput
                 label="Password"
                 value={password}
                 secureTextEntry={true}
+                autoCapitalize="none"
                 onChangeText={(text) => setPassword(text)}
             />
             <Button mode="contained" onPress={onLogIn}>
