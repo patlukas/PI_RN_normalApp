@@ -10,7 +10,7 @@ import TournamentList_List from "../TournamentList/TournamentList_List";
 import PlayerList_List from "../PlayerList/PlayerList_List";
 import PostList_List from "../PostList/PostList_List";
 import { apiGetListPlayerData } from "../../api/apiGetListPlayerData";
-import { apiGetListMatchesData } from "../../api/apiGetListMatchesData";
+import { apiGetListMatchesData } from "../../api/api_game_get_listGame";
 import { apiGetListTournamentData } from "../../api/apiGetListTournamentData";
 import { apiAddPost } from "../../api/apiAddPost";
 

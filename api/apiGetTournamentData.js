@@ -1,8 +1,8 @@
-import { apiGetListTeamData } from "./api_team_get_listTeams";
+import { api_team_get_listTeams } from "./api_team_get_listTeams";
 
 export async function apiGetTournamentData(tournamentId, token) {
     //TODO
-    const listTeam = await apiGetListTeamData(token);
+    const listTeam = await api_team_get_listTeams(token);
     try {
         const result = await axios.get(global.apiLink + "Tournament", {});
         if (result.status == 200) {

@@ -1,8 +1,8 @@
 import axios from "axios";
-import { apiGetListTeamData } from "./api_team_get_listTeams";
+import { api_team_get_listTeams } from "./api_team_get_listTeams";
 
 export async function apiGetMatchData(id, token) {
-    const listTeam = await apiGetListTeamData();
+    const listTeam = await api_team_get_listTeams();
     const teamsIdToName = {};
     for (const team of listTeam) {
         teamsIdToName[team.id] = team.name;
