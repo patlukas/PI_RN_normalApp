@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList } from "react-native";
 import TeamList_Element from "./TeamList_Element";
 
 const TeamList_List = ({ data, navigation }) => {
@@ -13,14 +13,14 @@ const TeamList_List = ({ data, navigation }) => {
             renderItem={({ item }) => (
                 <TeamList_Element
                     name={item.name}
+                    shortName={item.shortName}
                     city={item.city}
+                    coachFullName={item.coachFullName}
                     onPress={() => onSelectTeam(item.id)}
                 />
             )}
         />
     );
 };
-
-const styles = StyleSheet.create({});
 
 export default TeamList_List;

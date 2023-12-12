@@ -23,7 +23,17 @@ export default function App() {
     // global.apiLink = "http://localhost:8080/api/";
     global.apiLink = "http://192.168.0.199:8080/api/";
 
-    const [accountData, setAccountData] = useState(false);
+    const [accountData, setAccountData] = useState({
+        id: "c02128f5-74ba-4e5e-b4e7-a582eedf7ec0",
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2llbWFUdUt1YmkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImMwMjEyOGY1LTc0YmEtNGU1ZS1iNGU3LWE1ODJlZWRmN2VjMCIsImp0aSI6IjM4YjVkNjE5LTUxOWMtNDAwYi04ZGY0LTE3NjNlMjk2YTYyYiIsImV4cCI6MTcwMjM0ODcwOCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.DMDPUvg0wL9c8hfEhRPL-UrGyaDtzNj_z53t83LbJms",
+        username: "siemaTuKubi",
+        firstName: "Siema",
+        lastName: "Kubi",
+        email: "siema@tu.kubi",
+        imageURL: "Upload/UserImages/default.png",
+        playerId: null,
+        teamId: null,
+    });
     return (
         <>
             <StatusBar style="auto" />
@@ -50,7 +60,7 @@ export default function App() {
                         <Stack.Screen
                             name="TeamList_Screen"
                             component={TeamList_Screen}
-                            options={{ title: "Ekran z zespołami" }}
+                            options={{ title: "Team list" }}
                         />
                         <Stack.Screen
                             name="Team_Screen"

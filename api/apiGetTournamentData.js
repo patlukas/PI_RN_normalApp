@@ -1,4 +1,4 @@
-import { apiGetListTeamData } from "./apiGetListTeamData";
+import { apiGetListTeamData } from "./api_team_get_listTeams";
 
 export async function apiGetTournamentData(tournamentId, token) {
     //TODO

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function apiOnLogIn(username, password) {
+export async function api_auth_login(username, password) {
     try {
         const result = await axios.post(global.apiLink + "Auth/Login", {
             username,

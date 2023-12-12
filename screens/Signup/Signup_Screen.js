@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { TextInput, Button, Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import { apiOnSignUp } from "../../api/apiOnSignUp";
+import { api_auth_register } from "../../api/api_auth_register";
 
 const Signup_Screen = ({ navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
@@ -23,7 +23,7 @@ const Signup_Screen = ({ navigation }) => {
     const [password2, setPassword2] = useState("");
 
     const onSignUp = async () => {
-        const message = await apiOnSignUp(
+        const message = await api_auth_register(
             username,
             firstName,
             lastName,

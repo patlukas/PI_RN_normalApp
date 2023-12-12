@@ -1,25 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import { apiGetListTeamData } from "../../api/apiGetListTeamData";
+import { api_team_get_listTeams } from "../../api/api_team_get_listTeams";
 import TeamList_List from "./TeamList_List";
 
 const TeamList_Screen = ({ navigation }) => {
-    const { accountData, setAccountData } = useContext(AccountDataContext);
+    const { accountData } = useContext(AccountDataContext);
     const [listTeamData, setListTeamData] = useState([]);
     useEffect(() => {
         loadListTeamData();
     }, []);
-    useEffect(() => {
-        if (accountData === false) {
-            navigation.replace("Login_Screen");
-            return () => {};
-        }
-    }, [accountData, navigation]);
 
     const loadListTeamData = async () => {
-        const l = await apiGetListTeamData(accountData.token);
-        setListTeamData(l);
+        setListTeamData(await api_team_get_listTeams(accountData.token));
     };
 
     return (
@@ -28,7 +21,5 @@ const TeamList_Screen = ({ navigation }) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({});
 
 export default TeamList_Screen;

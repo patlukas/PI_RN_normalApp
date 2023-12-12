@@ -1,9 +1,11 @@
 import axios from "axios";
 
-export async function apiGetListTeamData(token) {
+export async function api_team_get_listTeams(token) {
     let listTeam = [];
     try {
-        const result = await axios.get(global.apiLink + "Teams", {});
+        const result = await axios.get(global.apiLink + "Teams", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
         if (result.status == 200) {
             for (const team of result.data) {
                 listTeam.push({
@@ -11,6 +13,7 @@ export async function apiGetListTeamData(token) {
                     name: team.teamName,
                     shortName: team.shortTeamName,
                     city: team.city,
+                    coachFullName: team.coachFullName,
                 });
             }
         }

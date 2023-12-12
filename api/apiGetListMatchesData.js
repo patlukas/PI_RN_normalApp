@@ -1,5 +1,5 @@
 import axios from "axios";
-import { apiGetListTeamData } from "./apiGetListTeamData";
+import { apiGetListTeamData } from "./api_team_get_listTeams";
 
 export async function apiGetListMatchesData(token, teamId = null) {
     let listMatches = [];

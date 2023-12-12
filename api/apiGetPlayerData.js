@@ -1,5 +1,5 @@
 import { apiGetListPlayerData } from "./apiGetListPlayerData";
-import { apiGetListTeamData } from "./apiGetListTeamData";
+import { apiGetListTeamData } from "./api_team_get_listTeams";
 
 export async function apiGetPlayerData(playerId, token) {
     //TODO

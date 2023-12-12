@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { TextInput, Button, Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import { apiOnLogIn } from "../../api/apiOnLogIn";
+import { api_auth_login } from "../../api/api_auth_login";
 
 const Login_Screen = ({ navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
@@ -18,7 +18,7 @@ const Login_Screen = ({ navigation }) => {
     const [password, setPassword] = useState("");
 
     const onLogIn = async () => {
-        const newAccountData = await apiOnLogIn(username, password);
+        const newAccountData = await api_auth_login(username, password);
         if (newAccountData === false) {
             setPassword("");
             setError("Incorrect login details!");
