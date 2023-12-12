@@ -25,7 +25,7 @@ export default function App() {
 
     const [accountData, setAccountData] = useState({
         id: "c02128f5-74ba-4e5e-b4e7-a582eedf7ec0",
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2llbWFUdUt1YmkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImMwMjEyOGY1LTc0YmEtNGU1ZS1iNGU3LWE1ODJlZWRmN2VjMCIsImp0aSI6IjM4YjVkNjE5LTUxOWMtNDAwYi04ZGY0LTE3NjNlMjk2YTYyYiIsImV4cCI6MTcwMjM0ODcwOCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.DMDPUvg0wL9c8hfEhRPL-UrGyaDtzNj_z53t83LbJms",
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2llbWFUdUt1YmkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImMwMjEyOGY1LTc0YmEtNGU1ZS1iNGU3LWE1ODJlZWRmN2VjMCIsImp0aSI6IjZkNDI3NDkwLTRjNWQtNGM0Ni1hN2YzLTllOTI0OWNlMWQzMCIsImV4cCI6MTcwMjM5MzkxMywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.T3oZM3j2gGWFPc7y8hjZ2B9LqFMHnyCNTQ9FccaH9Zo",
         username: "siemaTuKubi",
         firstName: "Siema",
         lastName: "Kubi",
@@ -80,7 +80,7 @@ export default function App() {
                         <Stack.Screen
                             name="TournamentList_Screen"
                             component={TournamentList_Screen}
-                            options={{ title: "Lista turniejów" }}
+                            options={{ title: "Tournament list" }}
                         />
                         <Stack.Screen
                             name="Tournament_Screen"

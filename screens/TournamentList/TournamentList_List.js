@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList } from "react-native";
 import TournamentList_Element from "./TournamentList_Element";
 
 const TournamentList_List = ({ data, navigation }) => {
@@ -21,7 +21,5 @@ const TournamentList_List = ({ data, navigation }) => {
         />
     );
 };
-
-const styles = StyleSheet.create({});
 
 export default TournamentList_List;

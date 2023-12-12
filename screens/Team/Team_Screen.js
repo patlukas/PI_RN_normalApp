@@ -11,7 +11,7 @@ import PlayerList_List from "../PlayerList/PlayerList_List";
 import PostList_List from "../PostList/PostList_List";
 import { apiGetListPlayerData } from "../../api/apiGetListPlayerData";
 import { apiGetListMatchesData } from "../../api/api_game_get_listGame";
-import { apiGetListTournamentData } from "../../api/apiGetListTournamentData";
+import { api_tournament_get_listTournament } from "../../api/api_tournament_get_listTournament"; //TODO
 import { apiAddPost } from "../../api/apiAddPost";
 
 const Team_Screen = ({ route, navigation }) => {
@@ -39,7 +39,7 @@ const Team_Screen = ({ route, navigation }) => {
         setListPlayer(await apiGetListPlayerData(accountData.token, teamId));
         setListMatches(await apiGetListMatchesData(accountData.token, teamId));
         setListTournament(
-            await apiGetListTournamentData(accountData.token, teamId)
+            await api_tournament_get_listTournament(accountData.token, teamId)
         );
     };
 

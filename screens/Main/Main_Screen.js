@@ -76,7 +76,7 @@ const Main_Screen = ({ navigation }) => {
                     mode="contained"
                     onPress={() => navigation.push("TournamentList_Screen")}
                 >
-                    Lista turniejów
+                    Tournament list
                 </Button>
                 <Button
                     mode="contained"
