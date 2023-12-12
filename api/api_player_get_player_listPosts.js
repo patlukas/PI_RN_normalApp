@@ -1,11 +1,14 @@
 import axios from "axios";
 
-export async function api_post_get_listPost(token) {
+export async function api_player_get_player_listPosts(token, playerId) {
     let listPosts = [];
     try {
-        const result = await axios.get(global.apiLink + "Posts", {
-            headers: { Authorization: `Bearer ${token}` },
-        });
+        const result = await axios.get(
+            global.apiLink + "Players/" + playerId + "/posts",
+            {
+                headers: { Authorization: `Bearer ${token}` },
+            }
+        );
         if (result.status == 200) {
             for (const post of result.data) {
                 let listComment = [];
@@ -20,7 +23,7 @@ export async function api_post_get_listPost(token) {
 
                 listPosts.push({
                     id: post.id,
-                    name: post.author.userName,
+                    name: null,
                     text: post.text,
                     date: post.createdAt.replace("T", " ").split(".")[0],
                     comments: listComment,

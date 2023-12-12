@@ -12,7 +12,7 @@ import PostList_List from "../PostList/PostList_List";
 import { api_player_get_listPlayers } from "../../api/api_player_get_listPlayers";
 import { apiGetListMatchesData } from "../../api/api_game_get_listGame";
 import { api_tournament_get_listTournament } from "../../api/api_tournament_get_listTournament"; //TODO
-import { apiAddPost } from "../../api/apiAddPost";
+import { api_post_post_post } from "../../api/api_post_post_post";
 
 const Team_Screen = ({ route, navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
@@ -46,7 +46,7 @@ const Team_Screen = ({ route, navigation }) => {
     };
 
     const onAddPost = async (text) => {
-        await apiAddPost(accountData.id, text, accountData.token);
+        await api_post_post_post(accountData.token, accountData.id, text);
         setListPost(await apiGetTeamListPosts(teamId, accountData.token));
     };
 

@@ -24,14 +24,14 @@ export default function App() {
     global.apiLink = "http://192.168.0.199:8080/api/";
 
     const [accountData, setAccountData] = useState({
-        id: "c02128f5-74ba-4e5e-b4e7-a582eedf7ec0",
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2llbWFUdUt1YmkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImMwMjEyOGY1LTc0YmEtNGU1ZS1iNGU3LWE1ODJlZWRmN2VjMCIsImp0aSI6IjZkNDI3NDkwLTRjNWQtNGM0Ni1hN2YzLTllOTI0OWNlMWQzMCIsImV4cCI6MTcwMjM5MzkxMywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.T3oZM3j2gGWFPc7y8hjZ2B9LqFMHnyCNTQ9FccaH9Zo",
+        id: "01ff0816-e708-49a8-a5ff-60c7e579b3c4",
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2llbWFUdUt1YmkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImMwMjEyOGY1LTc0YmEtNGU1ZS1iNGU3LWE1ODJlZWRmN2VjMCIsImp0aSI6IjE3ZDVhOGI4LWRjNjAtNDM3ZC04NDJlLWU1NzRjZjlhZGIyZiIsImV4cCI6MTcwMjQwNTgyOCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.QyCnzifzNKc52UspdFIf5INTjlsmBLe7-zxqQ-XXaTo",
         username: "siemaTuKubi",
         firstName: "Siema",
         lastName: "Kubi",
         email: "siema@tu.kubi",
         imageURL: "Upload/UserImages/default.png",
-        playerId: null,
+        playerId: 1,
         teamId: null,
     });
     return (

@@ -12,7 +12,7 @@ export async function api_player_get_listPlayers(token, idTeam = null) {
                 const { firstName, lastName, imageURL } = user;
                 const { teamName, shortTeamName } = team;
                 const name = firstName + " " + lastName;
-                let url = global.apiLink.replace("/api", "") + imageURL;
+                const url = global.apiLink.replace("/api", "") + imageURL;
                 if (idTeam !== null && idTeam !== teamId) continue;
                 listPlayer.push({
                     id,

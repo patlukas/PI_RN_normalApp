@@ -6,7 +6,7 @@ const PostList_Element = ({ date, content, name, comments, onPress }) => {
     let elComments = [];
     for (const comment of comments) {
         elComments.push(
-            <View style={styles.comment_container}>
+            <View style={styles.comment_container} key={comment.id}>
                 <Text style={styles.comment_head}>
                     {comment.author} ({comment.date})
                 </Text>
