@@ -64,13 +64,13 @@ const Main_Screen = ({ navigation }) => {
                     mode="contained"
                     onPress={() => navigation.push("TeamList_Screen")}
                 >
-                    Lista zespołów
+                    Team list
                 </Button>
                 <Button
                     mode="contained"
-                    onPress={() => navigation.push("MatchList_Screen")}
+                    onPress={() => navigation.push("GameList_Screen")}
                 >
-                    Lista meczy
+                    Game list
                 </Button>
                 <Button
                     mode="contained"

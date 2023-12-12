@@ -5,7 +5,7 @@ import { AccountDataContext } from "../../context/AccountDataContext";
 import { apiGetTeamData } from "../../api/apiGetTeamData";
 import { apiGetTeamListPosts } from "../../api/apiGetTeamListPosts";
 import Team_DetailBtn from "./Team_DetailBtn";
-import MatchList_List from "../MatchList/MatchList_List";
+import GameList_List from "../GameList/GameList_List";
 import TournamentList_List from "../TournamentList/TournamentList_List";
 import PlayerList_List from "../PlayerList/PlayerList_List";
 import PostList_List from "../PostList/PostList_List";
@@ -62,7 +62,7 @@ const Team_Screen = ({ route, navigation }) => {
         );
     } else if (detailIndex == 1) {
         detail_el = (
-            <MatchList_List data={listMatches} navigation={navigation} />
+            <GameList_List data={listMatches} navigation={navigation} />
         );
     } else if (detailIndex == 2) {
         detail_el = (

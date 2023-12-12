@@ -1,8 +1,8 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
-import MatchList_Element from "./MatchList_Element";
+import { FlatList } from "react-native";
+import GameList_Element from "./GameList_Element";
 
-const MatchList_List = ({ data, navigation }) => {
+const GameList_List = ({ data, navigation }) => {
     const onSelectTeam = (id) => {
         navigation.navigate("Match_Screen", { id });
     };
@@ -11,7 +11,7 @@ const MatchList_List = ({ data, navigation }) => {
         <FlatList
             data={data}
             renderItem={({ item }) => (
-                <MatchList_Element
+                <GameList_Element
                     nameH={item.nameH}
                     nameG={item.nameG}
                     resultH={item.resultH}
@@ -25,6 +25,4 @@ const MatchList_List = ({ data, navigation }) => {
     );
 };
 
-const styles = StyleSheet.create({});
-
-export default MatchList_List;
+export default GameList_List;

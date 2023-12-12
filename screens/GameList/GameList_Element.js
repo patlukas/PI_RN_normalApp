@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import Card from "../../components/Card";
 
-const MatchList_Element = ({
+const GameList_Element = ({
     nameH,
     nameG,
     resultH,
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MatchList_Element;
+export default GameList_Element;
