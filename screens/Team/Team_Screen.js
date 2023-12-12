@@ -9,7 +9,7 @@ import GameList_List from "../GameList/GameList_List";
 import TournamentList_List from "../TournamentList/TournamentList_List";
 import PlayerList_List from "../PlayerList/PlayerList_List";
 import PostList_List from "../PostList/PostList_List";
-import { apiGetListPlayerData } from "../../api/apiGetListPlayerData";
+import { api_player_get_listPlayers } from "../../api/api_player_get_listPlayers";
 import { apiGetListMatchesData } from "../../api/api_game_get_listGame";
 import { api_tournament_get_listTournament } from "../../api/api_tournament_get_listTournament"; //TODO
 import { apiAddPost } from "../../api/apiAddPost";
@@ -36,7 +36,9 @@ const Team_Screen = ({ route, navigation }) => {
     const loadTeamData = async () => {
         setTeamData(await apiGetTeamData(teamId, accountData.token));
         setListPost(await apiGetTeamListPosts(teamId, accountData.token));
-        setListPlayer(await apiGetListPlayerData(accountData.token, teamId));
+        setListPlayer(
+            await api_player_get_listPlayers(accountData.token, teamId)
+        ); // change
         setListMatches(await apiGetListMatchesData(accountData.token, teamId));
         setListTournament(
             await api_tournament_get_listTournament(accountData.token, teamId)

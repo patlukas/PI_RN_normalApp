@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import PlayerList_List from "./PlayerList_List";
-import { apiGetListPlayerData } from "../../api/apiGetListPlayerData";
+import { api_player_get_listPlayers } from "../../api/api_player_get_listPlayers";
 
 const TeamList_Screen = ({ navigation }) => {
-    const { accountData, setAccountData } = useContext(AccountDataContext);
+    const { accountData } = useContext(AccountDataContext);
     const [listPlayerData, setListPlayerData] = useState([]);
     useEffect(() => {
         loadListPlayerData();
     }, []);
 
     const loadListPlayerData = async () => {
-        setListPlayerData(await apiGetListPlayerData(accountData.token));
+        setListPlayerData(await api_player_get_listPlayers(accountData.token));
     };
 
     return (
@@ -21,7 +21,5 @@ const TeamList_Screen = ({ navigation }) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({});
 
 export default TeamList_Screen;

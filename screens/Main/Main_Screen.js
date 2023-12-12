@@ -82,12 +82,12 @@ const Main_Screen = ({ navigation }) => {
                     mode="contained"
                     onPress={() => navigation.push("PlayerList_Screen")}
                 >
-                    Lista zawodników
+                    Player list
                 </Button>
                 {myTeamBtn}
                 {myProfileBtn}
                 <Button mode="contained" onPress={onLogout}>
-                    Wyloguj
+                    Log out
                 </Button>
             </View>
             <View style={styles.post_container}>
