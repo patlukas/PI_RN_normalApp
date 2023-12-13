@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import CommentList_List from "../CommentList/CommentList_List";
-import { apiGetPostData } from "../../api/apiGetPostData";
+import { api_post_get_post } from "../../api/api_post_get_post";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import { apiAddCommentToPost } from "../../api/apiAddCommentToPost";
-import { apiGetListPostComments } from "../../api/apiGetListPostComments";
-import { apiDelComment } from "../../api/apiDelComment";
+import { api_comment_post_comment } from "../../api/api_comment_post_comment";
+import { api_post_get_post_listComments } from "../../api/api_post_get_post_listComments";
+import { api_comment_delete_comment } from "../../api/api_comment_delete_comment";
 
-const Post_Screen = ({ route, navigation }) => {
-    const { accountData, setAccountData } = useContext(AccountDataContext);
+const Post_Screen = ({ route }) => {
+    const { accountData } = useContext(AccountDataContext);
     const [postData, setPostData] = useState(false);
     const [listComments, setListComments] = useState([]);
     useEffect(() => {
@@ -16,39 +16,41 @@ const Post_Screen = ({ route, navigation }) => {
     }, []);
 
     const onAddComment = async (newComment) => {
-        await apiAddCommentToPost(
+        await api_comment_post_comment(
+            accountData.token,
             accountData.id,
             route.params.id,
-            accountData.token,
             newComment
         );
         setListComments(
-            await apiGetListPostComments(
+            await api_post_get_post_listComments(
+                accountData.token,
                 accountData.id,
-                route.params.id,
-                accountData.token
+                route.params.id
             )
         );
     };
 
     const loadPosts = async () => {
-        setPostData(await apiGetPostData(route.params.id, accountData.token));
+        setPostData(
+            await api_post_get_post(accountData.token, route.params.id)
+        );
         setListComments(
-            await apiGetListPostComments(
+            await api_post_get_post_listComments(
+                accountData.token,
                 accountData.id,
-                route.params.id,
-                accountData.token
+                route.params.id
             )
         );
     };
 
     const onDelComment = async (idComment) => {
-        await apiDelComment(accountData.token, idComment);
+        await api_comment_delete_comment(accountData.token, idComment);
         setListComments(
-            await apiGetListPostComments(
+            await api_post_get_post_listComments(
+                accountData.token,
                 accountData.id,
-                route.params.id,
-                accountData.token
+                route.params.id
             )
         );
     };

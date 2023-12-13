@@ -6,7 +6,7 @@ import { apiAddCommentToMatch } from "../../api/apiAddCommentToMatch";
 import Match_Detail from "./Match_Detail";
 import CommentList_List from "../CommentList/CommentList_List";
 import { apiGetListMatchComments } from "../../api/apiGetListMatchComments";
-import { apiDelComment } from "../../api/apiDelComment";
+import { apiDelComment } from "../../api/api_comment_delete_comment";
 import { apiDelGameComment } from "../../api/apiDelGameComment";
 
 const Match_Screen = ({ route, navigation }) => {
