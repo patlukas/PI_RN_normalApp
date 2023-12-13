@@ -1,10 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { AccountDataContext } from "../../context/AccountDataContext";
-import { apiGetMatchData } from "../../api/apiGetMatchData";
-import PostList_List from "../PostList/PostList_List";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import Match_Detail_Team from "./Match_Detail_Team";
 import Match_Detail_Row from "./Match_Detail_Row";
+import Match_Detail_Head from "./Match_Detail_Head";
 
 const Match_Detail = ({ teams, winner, setNow, date, onSelectTeam }) => {
     let result_el = [
@@ -28,6 +26,7 @@ const Match_Detail = ({ teams, winner, setNow, date, onSelectTeam }) => {
     }
     return (
         <View style={styles.container}>
+            <Match_Detail_Head date={date} />
             <View style={styles.view_oneLine}>
                 <Match_Detail_Team
                     name={teams[0].name}
@@ -36,7 +35,7 @@ const Match_Detail = ({ teams, winner, setNow, date, onSelectTeam }) => {
                 />
                 <Match_Detail_Team
                     name={teams[1].name}
-                    onPress={() => onSelectTeam(teams[0].id)}
+                    onPress={() => onSelectTeam(teams[1].id)}
                     specialFont={winner == 1}
                 />
             </View>

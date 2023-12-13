@@ -1,11 +1,13 @@
 import axios from "axios";
 
-export async function apiGetListMatchComments(idUser, idGame, token) {
+export async function api_game_get_game_listComments(token, idUser, idGame) {
     let listComments = [];
     try {
         const result = await axios.get(
             global.apiLink + "Games/" + idGame + "/gameComments",
-            {}
+            {
+                headers: { Authorization: `Bearer ${token}` },
+            }
         );
         if (result.status == 200) {
             for (const comment of result.data) {

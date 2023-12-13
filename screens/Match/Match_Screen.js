@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import { apiGetMatchData } from "../../api/apiGetMatchData";
-import { apiAddCommentToMatch } from "../../api/apiAddCommentToMatch";
+import { api_game_get_game } from "../../api/api_game_get_game";
+import { api_gameComment_post_comment } from "../../api/api_gameComment_post_comment";
 import Match_Detail from "./Match_Detail";
 import CommentList_List from "../CommentList/CommentList_List";
-import { apiGetListMatchComments } from "../../api/apiGetListMatchComments";
-import { apiDelComment } from "../../api/api_comment_delete_comment";
-import { apiDelGameComment } from "../../api/apiDelGameComment";
+import { api_game_get_game_listComments } from "../../api/api_game_get_game_listComments";
+import { api_gameComment_delete_comment } from "../../api/api_gameComment_delete_comment";
 
 const Match_Screen = ({ route, navigation }) => {
-    const { accountData, setAccountData } = useContext(AccountDataContext);
+    const { accountData } = useContext(AccountDataContext);
     const [matchData, setMatchData] = useState(false);
     const [commentList, setCommentList] = useState([]);
     useEffect(() => {
@@ -19,43 +18,50 @@ const Match_Screen = ({ route, navigation }) => {
     }, []);
 
     const loadMatchData = async () => {
-        setMatchData(await apiGetMatchData(route.params.id, accountData.token));
+        setMatchData(
+            await api_game_get_game(accountData.token, route.params.id)
+        );
         setCommentList(
-            await apiGetListMatchComments(
+            await api_game_get_game_listComments(
+                accountData.token,
                 accountData.id,
-                route.params.id,
-                accountData.token
+                route.params.id
             )
         );
     };
 
     const onSelectTeam = (id) => {
+        if (id === null) return;
         navigation.push("Team_Screen", { id });
     };
 
     const onAddComment = async (newComment) => {
-        await apiAddCommentToMatch(
+        await api_gameComment_post_comment(
+            accountData.token,
             accountData.id,
             route.params.id,
-            accountData.token,
             newComment
         );
         setCommentList(
-            await apiGetListMatchComments(
+            await api_game_get_game_listComments(
+                accountData.token,
                 accountData.id,
-                route.params.id,
-                accountData.token
+                route.params.id
             )
         );
     };
 
     const onDelComment = async (idComment) => {
-        await apiDelGameComment(accountData.token, route.params.id, idComment);
+        await api_gameComment_delete_comment(
+            accountData.token,
+            route.params.id,
+            idComment
+        );
         setCommentList(
-            await apiGetListMatchComments(
+            await api_game_get_game_listComments(
+                accountData.token,
                 accountData.id,
-                route.params.id,
-                accountData.token
+                route.params.id
             )
         );
     };

@@ -4,21 +4,11 @@ import { StyleSheet, Text, View } from "react-native";
 const Match_Detail_Row = ({ valH, valG, title, winner = -1 }) => {
     return (
         <View style={styles.view}>
-            <Text
-                style={[
-                    styles.mainTxt,
-                    winner == 0 && styles.winnerTxt,
-                ]}
-            >
+            <Text style={[styles.mainTxt, winner == 0 && styles.winnerTxt]}>
                 {valH}
             </Text>
             <Text style={styles.sepTxt}>{title}</Text>
-            <Text
-                style={[
-                    styles.mainTxt,
-                    winner == 1 && styles.winnerTxt,
-                ]}
-            >
+            <Text style={[styles.mainTxt, winner == 1 && styles.winnerTxt]}>
                 {valG}
             </Text>
         </View>

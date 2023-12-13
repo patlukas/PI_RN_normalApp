@@ -24,8 +24,8 @@ export default function App() {
     global.apiLink = "http://192.168.1.4:8080/api/";
 
     const [accountData, setAccountData] = useState({
-        id: "01ff0816-e708-49a8-a5ff-60c7e579b3c4",
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2llbWFUdUt1YmkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImMwMjEyOGY1LTc0YmEtNGU1ZS1iNGU3LWE1ODJlZWRmN2VjMCIsImp0aSI6ImM0MTVmOGM3LWVlM2UtNDIwMS1iYmE1LTJiZDBmNjBhNWJhNiIsImV4cCI6MTcwMjQ5Mjc2NSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.6qNJeFeRYc0rrls-OapSVT9xu4mLyYtYqbgK1L-lUZk",
+        id: "c02128f5-74ba-4e5e-b4e7-a582eedf7ec0",
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2llbWFUdUt1YmkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImMwMjEyOGY1LTc0YmEtNGU1ZS1iNGU3LWE1ODJlZWRmN2VjMCIsImp0aSI6IjAzMjVhYWVkLThiNzAtNDQzNy1hMjU4LTJmZTc5MmQ2ZmRmOCIsImV4cCI6MTcwMjUxMDQ2OSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.9z7FQc6geUy3ww4SY7dquH6cpL8JmCJjRzDY0L_DQqc",
         username: "siemaTuKubi",
         firstName: "Siema",
         lastName: "Kubi",

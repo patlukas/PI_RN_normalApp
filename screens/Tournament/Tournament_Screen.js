@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { apiGetTournamentData } from "../../api/apiGetTournamentData";
-// import { apiGetMatchData } from "../../api/apiGetMatchData";
 
 const Tournament_Screen = ({ route, navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);

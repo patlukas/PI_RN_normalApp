@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     },
     txt: {
         textAlign: "center",
-        fontSize: 18,
+        fontSize: 15,
     },
     specialFont: {
         color: "#0f0",
