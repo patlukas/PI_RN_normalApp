@@ -13,7 +13,9 @@ const Main_Screen = ({ navigation }) => {
     }, []);
 
     const loadData = async () => {
-        setListPost(await api_post_get_listPost(accountData.token));
+        setListPost(
+            await api_post_get_listPost(accountData.token, accountData.id)
+        );
     };
     useEffect(() => {
         if (accountData === false) {

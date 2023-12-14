@@ -9,22 +9,19 @@ export async function api_auth_login(username, password) {
         if (result.status == 200) {
             const { user, token } = result.data;
             const { id, userName, firstName, lastName, email, imageURL } = user;
-            const result2 = await axios.get(global.apiLink + "Users/" + id, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-            if (result2.status == 200) {
-                return {
-                    id,
-                    token,
-                    username: userName,
-                    firstName,
-                    lastName,
-                    email,
-                    imageURL,
-                    playerId: result2.data.playerId,
-                    teamId: result2.data.teamId,
-                };
-            }
+            const { teamId, playerId, organizerId } = user;
+            return {
+                id,
+                token,
+                username: userName,
+                firstName,
+                lastName,
+                email,
+                imageURL,
+                playerId,
+                teamId,
+                organizerId,
+            };
         }
     } catch (error) {
         console.log(error);

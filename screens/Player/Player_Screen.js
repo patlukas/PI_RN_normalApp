@@ -22,7 +22,8 @@ const Player_Screen = ({ route, navigation }) => {
         setListPosts(
             await api_player_get_player_listPosts(
                 accountData.token,
-                route.params.id
+                route.params.id,
+                accountData.id
             )
         );
     };
@@ -36,7 +37,8 @@ const Player_Screen = ({ route, navigation }) => {
         setListPosts(
             await api_player_get_player_listPosts(
                 accountData.token,
-                route.params.id
+                route.params.id,
+                accountData.id
             )
         );
     };

@@ -1,26 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
-import { TextInput, Button, Text } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
+import { Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import { apiGetTeamData } from "../../api/apiGetTeamData";
-import { apiGetTeamListPosts } from "../../api/apiGetTeamListPosts";
 import Team_DetailBtn from "./Team_DetailBtn";
 import GameList_List from "../GameList/GameList_List";
 import TournamentList_List from "../TournamentList/TournamentList_List";
 import PlayerList_List from "../PlayerList/PlayerList_List";
 import PostList_List from "../PostList/PostList_List";
-import { api_player_get_listPlayers } from "../../api/api_player_get_listPlayers";
-import { apiGetListMatchesData } from "../../api/api_game_get_listGame";
-import { api_tournament_get_listTournament } from "../../api/api_tournament_get_listTournament"; //TODO
 import { api_post_post_post } from "../../api/api_post_post_post";
+import { api_team_get_team } from "../../api/api_team_get_team";
+import { api_team_get_team_listPosts } from "../../api/api_team_get_team_listPosts";
+import { api_team_get_team_listTournament } from "../../api/api_team_get_team_listTournament";
 
 const Team_Screen = ({ route, navigation }) => {
-    const { accountData, setAccountData } = useContext(AccountDataContext);
+    const { accountData } = useContext(AccountDataContext);
     const [detailIndex, setDetailIndex] = useState(0);
     const [teamData, setTeamData] = useState(false);
     const [listPost, setListPost] = useState([]);
-    const [listPlayer, setListPlayer] = useState([]);
-    const [listMatches, setListMatches] = useState([]);
     const [listTournament, setListTournament] = useState([]);
     useEffect(() => {
         loadTeamData();
@@ -34,20 +30,22 @@ const Team_Screen = ({ route, navigation }) => {
     const teamId = route.params.id;
 
     const loadTeamData = async () => {
-        setTeamData(await apiGetTeamData(teamId, accountData.token));
-        setListPost(await apiGetTeamListPosts(teamId, accountData.token));
-        setListPlayer(
-            await api_player_get_listPlayers(accountData.token, teamId)
-        ); // change
-        setListMatches(await apiGetListMatchesData(accountData.token, teamId));
+        setTeamData(await api_team_get_team(accountData.token, teamId));
+        setListPost(
+            await api_team_get_team_listPosts(
+                accountData.token,
+                teamId,
+                accountData.id
+            )
+        );
         setListTournament(
-            await api_tournament_get_listTournament(accountData.token, teamId)
+            await api_team_get_team_listTournament(accountData.token, teamId)
         );
     };
 
     const onAddPost = async (text) => {
         await api_post_post_post(accountData.token, accountData.id, text);
-        setListPost(await apiGetTeamListPosts(teamId, accountData.token));
+        // setListPost(await apiGetTeamListPosts(teamId, accountData.token));
     };
 
     if (teamData === false) return null;
@@ -64,7 +62,7 @@ const Team_Screen = ({ route, navigation }) => {
         );
     } else if (detailIndex == 1) {
         detail_el = (
-            <GameList_List data={listMatches} navigation={navigation} />
+            <GameList_List data={teamData.listGame} navigation={navigation} />
         );
     } else if (detailIndex == 2) {
         detail_el = (
@@ -75,16 +73,24 @@ const Team_Screen = ({ route, navigation }) => {
         );
     } else if (detailIndex == 3) {
         detail_el = (
-            <PlayerList_List data={listPlayer} navigation={navigation} />
+            <PlayerList_List
+                data={teamData.listPlayer}
+                navigation={navigation}
+            />
         );
     }
+    console.log(teamData.listPlayer);
 
     return (
         <View style={styles.container}>
             <View style={styles.view_mainData}>
-                <Text style={styles.txt_name}>Name: {teamData.name}</Text>
+                <Text style={styles.txt_name}>
+                    Name: {teamData.teamName} [{teamData.shortTeamName}]
+                </Text>
                 <Text style={styles.txt_city}>City: {teamData.city}</Text>
-                <Text style={styles.txt_city}>Coach: {teamData.coach}</Text>
+                <Text style={styles.txt_city}>
+                    Coach: {teamData.coachFullName}
+                </Text>
             </View>
             <View style={styles.Team_DetailBtnContainer}>
                 <Team_DetailBtn

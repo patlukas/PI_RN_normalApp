@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { apiGetTournamentData } from "../../api/apiGetTournamentData";

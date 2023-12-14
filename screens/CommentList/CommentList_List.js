@@ -14,7 +14,7 @@ const CommentList_List = ({ data, onAddComment, onDelComment }) => {
                     <CommentList_Element
                         name={item.name}
                         date={item.date}
-                        content={item.content}
+                        content={item.text}
                         canDel={item.canDel}
                         onDel={() => onDelComment(item.id)}
                     />

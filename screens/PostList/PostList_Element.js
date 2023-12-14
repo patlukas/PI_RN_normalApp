@@ -8,7 +8,7 @@ const PostList_Element = ({ date, content, name, comments, onPress }) => {
         elComments.push(
             <View style={styles.comment_container} key={comment.id}>
                 <Text style={styles.comment_head}>
-                    {comment.author} ({comment.date})
+                    {comment.name} ({comment.date})
                 </Text>
                 <Text style={styles.comment_body}>{comment.text}</Text>
             </View>
