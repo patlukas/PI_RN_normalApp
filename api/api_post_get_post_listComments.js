@@ -13,7 +13,7 @@ export async function api_post_get_post_listComments(token, userId, idPost) {
             return change_apiListComments_to_listComments(result.data, userId);
         }
     } catch (error) {
-        console.log("L", error);
+        console.log(error);
     }
     return [];
 }

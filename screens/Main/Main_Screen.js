@@ -4,13 +4,21 @@ import { TextInput, Button, Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { api_post_get_listPost } from "../../api/api_post_get_listPost";
 import PostList_List from "../PostList/PostList_List";
+import { api_post_delete_post } from "../../api/api_post_delete_post";
+import { useFocusEffect } from "@react-navigation/native";
 
 const Main_Screen = ({ navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
     const [listPost, setListPost] = useState([]);
-    useEffect(() => {
-        loadData();
-    }, []);
+    // useEffect(() => {
+    //     loadData();
+    // }, []);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            loadData();
+        }, [])
+    );
 
     const loadData = async () => {
         setListPost(
@@ -58,6 +66,13 @@ const Main_Screen = ({ navigation }) => {
         );
     }
 
+    const onDelPost = async (idPost) => {
+        await api_post_delete_post(accountData.token, idPost);
+        setListPost(
+            await api_post_get_listPost(accountData.token, accountData.id)
+        );
+    };
+
     return (
         <View style={styles.main_container}>
             <View style={styles.btn_container}>
@@ -92,7 +107,11 @@ const Main_Screen = ({ navigation }) => {
                 </Button>
             </View>
             <View style={styles.post_container}>
-                <PostList_List data={listPost} navigation={navigation} />
+                <PostList_List
+                    data={listPost}
+                    navigation={navigation}
+                    onDelPost={onDelPost}
+                />
             </View>
         </View>
     );

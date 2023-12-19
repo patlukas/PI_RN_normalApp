@@ -11,6 +11,8 @@ import { api_post_post_post } from "../../api/api_post_post_post";
 import { api_team_get_team } from "../../api/api_team_get_team";
 import { api_team_get_team_listPosts } from "../../api/api_team_get_team_listPosts";
 import { api_team_get_team_listTournament } from "../../api/api_team_get_team_listTournament";
+import { api_post_delete_post } from "../../api/api_post_delete_post";
+import { useFocusEffect } from "@react-navigation/native";
 
 const Team_Screen = ({ route, navigation }) => {
     const { accountData } = useContext(AccountDataContext);
@@ -18,9 +20,12 @@ const Team_Screen = ({ route, navigation }) => {
     const [teamData, setTeamData] = useState(false);
     const [listPost, setListPost] = useState([]);
     const [listTournament, setListTournament] = useState([]);
-    useEffect(() => {
-        loadTeamData();
-    }, []);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            loadTeamData();
+        }, [])
+    );
     useEffect(() => {
         if (accountData === false) {
             navigation.replace("Login_Screen");
@@ -45,7 +50,24 @@ const Team_Screen = ({ route, navigation }) => {
 
     const onAddPost = async (text) => {
         await api_post_post_post(accountData.token, accountData.id, text);
-        // setListPost(await apiGetTeamListPosts(teamId, accountData.token));
+        setListPost(
+            await api_team_get_team_listPosts(
+                accountData.token,
+                teamId,
+                accountData.id
+            )
+        );
+    };
+
+    const onDelPost = async (idPost) => {
+        await api_post_delete_post(accountData.token, idPost);
+        setListPost(
+            await api_team_get_team_listPosts(
+                accountData.token,
+                teamId,
+                accountData.id
+            )
+        );
     };
 
     if (teamData === false) return null;
@@ -58,6 +80,7 @@ const Team_Screen = ({ route, navigation }) => {
                 navigation={navigation}
                 canAddPost={route.params.id === accountData.teamId}
                 onAddPost={onAddPost}
+                onDelPost={onDelPost}
             />
         );
     } else if (detailIndex == 1) {
@@ -79,7 +102,6 @@ const Team_Screen = ({ route, navigation }) => {
             />
         );
     }
-    console.log(teamData.listPlayer);
 
     return (
         <View style={styles.container}>

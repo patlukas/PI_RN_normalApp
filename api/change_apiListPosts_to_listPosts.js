@@ -4,8 +4,14 @@ export function change_apiListPosts_to_listPosts(apiListPosts, userId) {
     let listPosts = [];
 
     for (const post of apiListPosts) {
-        const { userName, firstName, lastName } = post.author;
-        const { player, organizer, team } = post.author;
+        id = post.author.id;
+        userName = post.author.userName;
+        firstName = post.author.firstName;
+        lastName = post.author.lastName;
+        player = post.author.player;
+        organizer = post.author.organizer;
+        team = post.author.team;
+
         const comments = change_apiListComments_to_listComments(
             post.comments,
             userId
@@ -21,7 +27,7 @@ export function change_apiListPosts_to_listPosts(apiListPosts, userId) {
             text: post.text,
             date: post.createdAt.replace("T", " ").split(".")[0],
             comments,
-            canDel: post.author.id === userId,
+            canDel: id === userId,
         });
     }
     listPosts.sort((key = (a, b) => b.id - a.id));

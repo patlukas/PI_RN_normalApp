@@ -24,14 +24,14 @@ export default function App() {
     global.apiLink = "http://192.168.1.4:8080/api/";
 
     const [accountData, setAccountData] = useState({
-        id: "8874b464-72a2-4f90-88cd-2158ea07de08",
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2llbWFUdUt1YmkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijg4NzRiNDY0LTcyYTItNGY5MC04OGNkLTIxNThlYTA3ZGUwOCIsImp0aSI6ImMzZjQyMjk0LTYwZTgtNGYwZS1iZTgzLThhYTBmZWFiZWQ0ZiIsImV4cCI6MTcwMjUyMzc2NSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.usPMaLhEWy7HnESTIzmlfpg2RdL_9dRX700sH9CgdD8",
-        username: "siemaTuKubi",
-        firstName: "Siema",
-        lastName: "Kubi",
+        id: "00d2064b-b2e3-4621-98db-c6389403032e",
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiUGxheWVyVXNlcjAxMyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMDBkMjA2NGItYjJlMy00NjIxLTk4ZGItYzYzODk0MDMwMzJlIiwianRpIjoiZGY5MTIyZjItZGE0Zi00Mzk0LTlkZjgtOTk2Yjk1NjkyY2Q5IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUGxheWVyIiwiZXhwIjoxNzAyOTUyNjY0LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.8nMVAFMLv0SijGn0zjQNIB7gYi_lsDOglp71TezWiLc",
+        username: "PlayerUser013",
+        firstName: "Michał",
+        lastName: "Jóźwiak",
         email: "siema@tu.kubi",
         imageURL: "Upload/UserImages/default.png",
-        playerId: 1,
+        playerId: 73,
         teamId: null,
         organizerId: null,
     });

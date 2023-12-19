@@ -8,6 +8,7 @@ const PostList_List = ({
     navigation,
     canAddPost = false,
     onAddPost = () => {},
+    onDelPost= () => {}
 }) => {
     const onSelectPost = (id) => {
         navigation.navigate("Post_Screen", { id });
@@ -28,6 +29,8 @@ const PostList_List = ({
                             date={item.date}
                             content={item.text}
                             comments={item.comments}
+                            canDel={item.canDel}
+                            onDel={() => onDelPost(item.id)}
                             onPress={() => onSelectPost(item.id)}
                             key={item.id}
                         />

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
 
 const Team_DetailBtn = ({ title, onPress, isSelected }) => {

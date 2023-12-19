@@ -1,8 +1,25 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Card from "../../components/Card";
+import { Button } from "react-native-paper";
 
-const PostList_Element = ({ date, content, name, comments, onPress }) => {
+const PostList_Element = ({
+    date,
+    content,
+    name,
+    comments,
+    canDel,
+    onDel,
+    onPress,
+}) => {
+    let delEl = null;
+    if (canDel) {
+        delEl = (
+            <Button mode="contained" onPress={onDel}>
+                Del
+            </Button>
+        );
+    }
     let elComments = [];
     for (const comment of comments) {
         elComments.push(
@@ -20,6 +37,7 @@ const PostList_Element = ({ date, content, name, comments, onPress }) => {
             <Text style={styles.post_date}>{date}</Text>
             <Text style={styles.post_content}>{content}</Text>
             {elComments}
+            {delEl}
         </Card>
     );
 };

@@ -14,7 +14,6 @@ export async function api_team_get_team(token, teamId) {
             const games = team1Games.concat(team2Games);
             let listPlayer = change_apiListPlayer_to_listPlayer(players);
             let listGame = change_apiListGame_to_listGame(games);
-            console.log("L", listPlayer);
             return {
                 id,
                 teamName,
