@@ -14,8 +14,13 @@ const Player_Detail = ({
             <View style={styles.img_container}>
                 <Image
                     style={styles.img}
-                    source={{ uri: data.imageURL }}
+                    source={{
+                        uri:
+                            data.imageURL +
+                            `?timestamp=${new Date().getTime()}`,
+                    }}
                     resizeMode="contain"
+                    cash="reload"
                 />
             </View>
             <Player_ChangeImage

@@ -14,7 +14,13 @@ const PlayerList_Element = ({
         <Card backgroundColor="#fcf" onPress={onPress}>
             <View style={styles.container}>
                 <View>
-                    <Image style={styles.img} source={{ uri: imageURL }} />
+                    <Image
+                        style={styles.img}
+                        source={{
+                            uri:
+                                imageURL + `?timestamp=${new Date().getTime()}`,
+                        }}
+                    />
                 </View>
                 <View style={styles.container_txt}>
                     <Text style={styles.player_name}>
