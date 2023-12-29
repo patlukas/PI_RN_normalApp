@@ -1,41 +1,81 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import { apiGetTournamentData } from "../../api/apiGetTournamentData";
+import { api_tournament_get_tournament } from "../../api/api_tournament_get_tournament";
+import Tournament_Classic from "./Tournament_Classic";
+import Tournament_Swiss from "./Tournament_Swiss";
 
 const Tournament_Screen = ({ route, navigation }) => {
-    const { accountData, setAccountData } = useContext(AccountDataContext);
+    const { accountData } = useContext(AccountDataContext);
     const [tournamentData, setTournamentData] = useState([]);
     useEffect(() => {
         loadTournamentData();
     }, []);
-    useEffect(() => {
-        if (accountData === false) {
-            navigation.replace("Login_Screen");
-            return () => {};
-        }
-    }, [accountData, navigation]);
 
     const loadTournamentData = async () => {
         setTournamentData(
-            await apiGetTournamentData(route.params.id, accountData.token)
+            await api_tournament_get_tournament(
+                accountData.token,
+                route.params.id
+            )
         );
     };
 
+    let tournamentEl = null;
+    if (tournamentData.eliminationAlgorithm === "SwissElimination") {
+        tournamentEl = (
+            <Tournament_Swiss
+                tournamentId={route.params.id}
+                navigation={navigation}
+                games={tournamentData.games}
+            />
+        );
+    } else {
+        tournamentEl = (
+            <Tournament_Classic
+                tournamentId={route.params.id}
+                tournamentType={tournamentData.eliminationAlgorithm}
+                navigation={navigation}
+            />
+        );
+    }
+
     return (
-        <View>
-            <View>
-                <Text>{tournamentData.name}</Text>
-                <Text>{tournamentData.date}</Text>
-                <Text>{tournamentData.city}</Text>
+        <View style={styles.main_container}>
+            <View style={styles.container_txt}>
+                <Text style={styles.txt_name}>{tournamentData.name}</Text>
+                <Text style={styles.txt_city}>{tournamentData.city}</Text>
+                <Text style={styles.txt_date}>{tournamentData.date}</Text>
             </View>
-            {/* <View>
-                <Tournament_Brackets data={tournamentData.gamesInRound} />
-            </View> */}
+            <View style={styles.post_container}>{tournamentEl}</View>
         </View>
     );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    txt_name: {
+        textAlign: "center",
+        fontWeight: "bold",
+        fontSize: 22,
+    },
+    txt_date: {
+        textAlign: "center",
+        fontSize: 18,
+    },
+    txt_city: {
+        fontSize: 20,
+        textAlign: "center",
+    },
+    container_txt: {
+        paddingBottom: 15,
+        height: "auto",
+    },
+    main_container: {
+        flex: 1,
+    },
+    post_container: {
+        flex: 1,
+    },
+});
 
 export default Tournament_Screen;

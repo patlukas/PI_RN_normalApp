@@ -1,8 +1,14 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { Button } from "react-native-paper";
+import Player_ChangeImage from "./Player_ChangeImage";
 
-const Player_Detail = ({ data, onPressTeam }) => {
+const Player_Detail = ({
+    data,
+    onPressTeam,
+    canChangeImage,
+    afterChangeImage,
+}) => {
     return (
         <View>
             <View style={styles.img_container}>
@@ -12,6 +18,11 @@ const Player_Detail = ({ data, onPressTeam }) => {
                     resizeMode="contain"
                 />
             </View>
+            <Player_ChangeImage
+                canChangeImage={canChangeImage}
+                afterChangeImage={afterChangeImage}
+                imageIsDefault={data.imageURL.includes("default.png")}
+            />
 
             <Text style={styles.txt_name}>{data.name}</Text>
             <Text style={styles.txt_username}>{data.username}</Text>

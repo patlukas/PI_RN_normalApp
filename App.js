@@ -21,11 +21,11 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
     // global.apiLink = "http://localhost:8080/api/";
-    global.apiLink = "http://192.168.1.4:8080/api/";
+    global.apiLink = "http://192.168.0.199:8080/api/";
 
     const [accountData, setAccountData] = useState({
-        id: "00d2064b-b2e3-4621-98db-c6389403032e",
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiUGxheWVyVXNlcjAxMyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMDBkMjA2NGItYjJlMy00NjIxLTk4ZGItYzYzODk0MDMwMzJlIiwianRpIjoiZGY5MTIyZjItZGE0Zi00Mzk0LTlkZjgtOTk2Yjk1NjkyY2Q5IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUGxheWVyIiwiZXhwIjoxNzAyOTUyNjY0LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.8nMVAFMLv0SijGn0zjQNIB7gYi_lsDOglp71TezWiLc",
+        id: "c0c308dd-0983-489e-8d51-10d753b345cc",
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiUGxheWVyVXNlcjAxMyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYzBjMzA4ZGQtMDk4My00ODllLThkNTEtMTBkNzUzYjM0NWNjIiwianRpIjoiNzg3Yjg5NzktZGQwZC00MjVlLWFkM2UtMzY4MTY5YzhmODczIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUGxheWVyIiwiZXhwIjoxNzAzODc0MjY3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.vKyg_BwkOWSzOpL3jDk0TVlL-dhYq_ZOBDekSYRKs3s",
         username: "PlayerUser013",
         firstName: "Michał",
         lastName: "Jóźwiak",

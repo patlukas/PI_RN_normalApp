@@ -13,6 +13,7 @@ export function change_apiListGame_to_listGame(apiListGame) {
         }
         let date = startDate.replace("T", " ");
         if (date === "0001-01-01 00:00:00") date = "";
+        const round = "round" in game ? game.round : null;
         listGame.push({
             id,
             nameH,
@@ -21,6 +22,7 @@ export function change_apiListGame_to_listGame(apiListGame) {
             resultG: team2Sets,
             date,
             winner,
+            round,
         });
     }
     return listGame;
