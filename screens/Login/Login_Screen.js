@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { TextInput, Button, Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { api_auth_login } from "../../api/api_auth_login";
+import DoubleBtn from "./DoubleBtn";
 
 const Login_Screen = ({ navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);
@@ -28,34 +29,65 @@ const Login_Screen = ({ navigation }) => {
     };
 
     return (
-        <View>
-            <Text variant="titleMedium">{errorMessage}</Text>
-            <TextInput
-                label="Username"
-                value={username}
-                autoCapitalize="none"
-                onChangeText={(text) => setUsername(text)}
-            />
-            <TextInput
-                label="Password"
-                value={password}
-                secureTextEntry={true}
-                autoCapitalize="none"
-                onChangeText={(text) => setPassword(text)}
-            />
-            <Button mode="contained" onPress={onLogIn}>
-                Log in
-            </Button>
-            <Button
-                mode="contained"
-                onPress={() => navigation.push("Signup_Screen")}
-            >
-                Sign up
-            </Button>
+        <View style={styles.container_main}>
+            <Text style={styles.txt_logo}>Playmaker</Text>
+            <View style={styles.container_btn}>
+                <TextInput
+                    style={styles.input_txt}
+                    label="Username"
+                    value={username}
+                    autoCapitalize="none"
+                    onChangeText={(text) => setUsername(text)}
+                />
+                <TextInput
+                    style={styles.input_txt}
+                    label="Password"
+                    value={password}
+                    secureTextEntry={true}
+                    autoCapitalize="none"
+                    onChangeText={(text) => setPassword(text)}
+                />
+                <Text style={styles.txt_error}>{errorMessage}</Text>
+            </View>
+            <View style={styles.container_btn}>
+                <DoubleBtn
+                    title1="Log in"
+                    onPress1={onLogIn}
+                    title2="Sign up"
+                    onPress2={() => navigation.push("Signup_Screen")}
+                />
+            </View>
         </View>
     );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container_main: {
+        marginTop: 35,
+    },
+    txt_logo: {
+        width: "100%",
+        textAlign: "center",
+        fontSize: 40,
+        paddingTop: 70,
+        paddingBottom: 110,
+        color: "#9462E5",
+        fontWeight: 700,
+    },
+    container_btn: {
+        width: "80%",
+        marginHorizontal: "10%",
+        paddingVertical: 20,
+    },
+    input_txt: {
+        marginVertical: 10,
+        backgroundColor: "#ddd",
+    },
+    txt_error: {
+        color: "#f55",
+        fontSize: 16,
+        fontWeight: 600,
+    },
+});
 
 export default Login_Screen;

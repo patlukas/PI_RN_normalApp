@@ -8,7 +8,7 @@ const PostList_List = ({
     navigation,
     canAddPost = false,
     onAddPost = () => {},
-    onDelPost= () => {}
+    onDelPost = () => {},
 }) => {
     const onSelectPost = (id) => {
         navigation.navigate("Post_Screen", { id });
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     },
     container_posts: {
         flex: 1,
+        minHeight: 2500,
     },
 });
 

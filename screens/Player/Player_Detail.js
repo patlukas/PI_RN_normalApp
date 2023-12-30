@@ -10,33 +10,35 @@ const Player_Detail = ({
     afterChangeImage,
 }) => {
     return (
-        <View>
-            <View style={styles.img_container}>
-                <Image
-                    style={styles.img}
-                    source={{
-                        uri:
-                            data.imageURL +
-                            `?timestamp=${new Date().getTime()}`,
-                    }}
-                    resizeMode="contain"
-                    cash="reload"
+        <View style={{ flexDirection: "row" }}>
+            <View style={{ width: "auto" }}>
+                <View style={styles.img_container}>
+                    <Image
+                        style={styles.img}
+                        source={{
+                            uri: data.imageURL,
+                            // + `?timestamp=${new Date().getTime()}`,
+                        }}
+                        resizeMode="contain"
+                        cash="reload"
+                    />
+                </View>
+                <Player_ChangeImage
+                    canChangeImage={canChangeImage}
+                    afterChangeImage={afterChangeImage}
+                    imageIsDefault={data.imageURL.includes("default.png")}
                 />
             </View>
-            <Player_ChangeImage
-                canChangeImage={canChangeImage}
-                afterChangeImage={afterChangeImage}
-                imageIsDefault={data.imageURL.includes("default.png")}
-            />
-
-            <Text style={styles.txt_name}>{data.name}</Text>
-            <Text style={styles.txt_username}>{data.username}</Text>
-            <Button mode="contained" onPress={onPressTeam}>
-                {data.teamName}
-            </Button>
-            <Text style={styles.txt_position}>
-                {data.number} | {data.position}
-            </Text>
+            <View style={{ flex: 1 }}>
+                <Text style={styles.txt_name}>{data.name}</Text>
+                <Text style={styles.txt_username}>{data.username}</Text>
+                <Button mode="contained" onPress={onPressTeam}>
+                    {data.teamName}
+                </Button>
+                <Text style={styles.txt_position}>
+                    {data.number} | {data.position}
+                </Text>
+            </View>
         </View>
     );
 };

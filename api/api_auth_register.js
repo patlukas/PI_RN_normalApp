@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function apiOnSignUp(
+export async function api_auth_register(
     username,
     firstName,
     lastName,
