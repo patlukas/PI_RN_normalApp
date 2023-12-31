@@ -1,4 +1,5 @@
 import axios from "axios";
+import { change_apiPost_to_post } from "./change_apiPost_to_post";
 
 export async function api_post_get_post(token, userId, postId) {
     try {
@@ -6,14 +7,7 @@ export async function api_post_get_post(token, userId, postId) {
             headers: { Authorization: `Bearer ${token}` },
         });
         if (result.status == 200) {
-            const { id, text, createdAt, author, comments } = result.data;
-            const date = createdAt.replace("T", " ").split(".")[0];
-            return {
-                id,
-                text,
-                date,
-                canDel: author.id === userId,
-            };
+            return change_apiPost_to_post(result.data, userId);
         }
     } catch (error) {
         console.log(error);

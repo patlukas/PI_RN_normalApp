@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { TextInput, Button, Text } from "react-native-paper";
+import { StyleSheet } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { api_post_get_listPost } from "../../api/api_post_get_listPost";
 import PostList_List from "../PostList/PostList_List";
@@ -8,11 +7,8 @@ import { api_post_delete_post } from "../../api/api_post_delete_post";
 import { useFocusEffect } from "@react-navigation/native";
 
 const Main_Screen = ({ navigation }) => {
-    const { accountData, setAccountData } = useContext(AccountDataContext);
+    const { accountData } = useContext(AccountDataContext);
     const [listPost, setListPost] = useState([]);
-    // useEffect(() => {
-    //     loadData();
-    // }, []);
 
     useFocusEffect(
         React.useCallback(() => {
@@ -32,40 +28,6 @@ const Main_Screen = ({ navigation }) => {
         }
     }, [accountData, navigation]);
 
-    const onLogout = () => {
-        setAccountData(false);
-    };
-
-    let myTeamBtn = null;
-    if (accountData.teamId !== null) {
-        myTeamBtn = (
-            <Button
-                mode="contained"
-                onPress={() =>
-                    navigation.push("Team_Screen", { id: accountData.teamId })
-                }
-            >
-                My team
-            </Button>
-        );
-    }
-
-    let myProfileBtn = null;
-    if (accountData.playerId !== null) {
-        myTeamBtn = (
-            <Button
-                mode="contained"
-                onPress={() =>
-                    navigation.push("Player_Screen", {
-                        id: accountData.playerId,
-                    })
-                }
-            >
-                My profile
-            </Button>
-        );
-    }
-
     const onDelPost = async (idPost) => {
         await api_post_delete_post(accountData.token, idPost);
         setListPost(
@@ -74,59 +36,14 @@ const Main_Screen = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.main_container}>
-            <View style={styles.btn_container}>
-                <Button
-                    mode="contained"
-                    onPress={() => navigation.push("TeamList_Screen")}
-                >
-                    Team list
-                </Button>
-                <Button
-                    mode="contained"
-                    onPress={() => navigation.push("GameList_Screen")}
-                >
-                    Game list
-                </Button>
-                <Button
-                    mode="contained"
-                    onPress={() => navigation.push("TournamentList_Screen")}
-                >
-                    Tournament list
-                </Button>
-                <Button
-                    mode="contained"
-                    onPress={() => navigation.push("PlayerList_Screen")}
-                >
-                    Player list
-                </Button>
-                {myTeamBtn}
-                {myProfileBtn}
-                <Button mode="contained" onPress={onLogout}>
-                    Log out
-                </Button>
-            </View>
-            <View style={styles.post_container}>
-                <PostList_List
-                    data={listPost}
-                    navigation={navigation}
-                    onDelPost={onDelPost}
-                />
-            </View>
-        </View>
+        <PostList_List
+            data={listPost}
+            navigation={navigation}
+            onDelPost={onDelPost}
+        />
     );
 };
 
-const styles = StyleSheet.create({
-    main_container: {
-        flex: 1,
-    },
-    btn_container: {
-        height: "auto",
-    },
-    post_container: {
-        flex: 1,
-    },
-});
+const styles = StyleSheet.create({});
 
 export default Main_Screen;

@@ -1,22 +1,21 @@
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import CommentList_Element from "./CommentList_Element";
-import CommentList_AddComment from "./CommentList_AddComment";
 
-const CommentList_List = ({ data, onAddComment, onDelComment }) => {
+const CommentList_List = ({ data, onDelComment = null }) => {
     return (
-        <View style={styles.container}>
-            <CommentList_AddComment onAddComment={onAddComment} />
+        <View>
             <FlatList
-                style={styles.flatList}
                 data={data}
                 renderItem={({ item }) => (
                     <CommentList_Element
+                        id={item.id}
                         name={item.name}
                         date={item.date}
                         content={item.text}
+                        imageURL={item.imageURL}
                         canDel={item.canDel}
-                        onDel={() => onDelComment(item.id)}
+                        onDel={onDelComment}
                     />
                 )}
             />
@@ -24,13 +23,6 @@ const CommentList_List = ({ data, onAddComment, onDelComment }) => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    flatList: {
-        height: "auto",
-    },
-});
+const styles = StyleSheet.create({});
 
 export default CommentList_List;

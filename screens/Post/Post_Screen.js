@@ -1,18 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import CommentList_List from "../CommentList/CommentList_List";
+import { StyleSheet, View } from "react-native";
 import { api_post_get_post } from "../../api/api_post_get_post";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { api_comment_post_comment } from "../../api/api_comment_post_comment";
-import { api_post_get_post_listComments } from "../../api/api_post_get_post_listComments";
 import { api_comment_delete_comment } from "../../api/api_comment_delete_comment";
-import { Button } from "react-native-paper";
 import { api_post_delete_post } from "../../api/api_post_delete_post";
+import PostList_Element from "../PostList/PostList_Element";
+import CommentList_AddComment from "../CommentList/CommentList_AddComment";
 
 const Post_Screen = ({ route, navigation }) => {
     const { accountData } = useContext(AccountDataContext);
     const [postData, setPostData] = useState(false);
-    const [listComments, setListComments] = useState([]);
     useEffect(() => {
         loadPosts();
     }, []);
@@ -24,25 +22,12 @@ const Post_Screen = ({ route, navigation }) => {
             route.params.id,
             newComment
         );
-        setListComments(
-            await api_post_get_post_listComments(
-                accountData.token,
-                accountData.id,
-                route.params.id
-            )
-        );
+        loadPosts();
     };
 
     const loadPosts = async () => {
         setPostData(
             await api_post_get_post(
-                accountData.token,
-                accountData.id,
-                route.params.id
-            )
-        );
-        setListComments(
-            await api_post_get_post_listComments(
                 accountData.token,
                 accountData.id,
                 route.params.id
@@ -57,49 +42,49 @@ const Post_Screen = ({ route, navigation }) => {
 
     const onDelComment = async (idComment) => {
         await api_comment_delete_comment(accountData.token, idComment);
-        setListComments(
-            await api_post_get_post_listComments(
-                accountData.token,
-                accountData.id,
-                route.params.id
-            )
-        );
+        loadPosts();
     };
 
     if (postData === false) return null;
-    console.log("P", postData);
-    let delEl = null;
-    if (postData.canDel) {
-        delEl = (
-            <Button mode="contained" onPress={() => onDelPost(postData.id)}>
-                Del
-            </Button>
-        );
-    }
+
+    const onPressAuthor = () => {
+        if (postData.teamId !== null) {
+            navigation.navigate("Team_Screen", { id: postData.teamId });
+        } else if (postData.playerId !== null) {
+            navigation.navigate("Player_Screen", {
+                id: postData.author.playerId,
+            });
+        }
+    };
 
     return (
-        <View style={{ flex: 1 }}>
-            <View style={{ height: "auto" }}>
-                <Text style={styles.post_date}>{postData.date}</Text>
-                <Text style={styles.post_content}>{postData.text}</Text>
-                {delEl}
+        <View style={styles.view_main}>
+            <View style={styles.view_post}>
+                <PostList_Element
+                    name={postData.name}
+                    date={postData.date}
+                    content={postData.text}
+                    comments={postData.comments}
+                    imageURL={postData.imageURL}
+                    canDel={postData.canDel}
+                    onDel={() => onDelPost(postData.id)}
+                    onDelComment={onDelComment}
+                    onPressAuthor={onPressAuthor}
+                    key={postData.id}
+                />
             </View>
-            <CommentList_List
-                data={listComments}
-                onAddComment={(text) => onAddComment(text)}
-                onDelComment={onDelComment}
-            />
+            <CommentList_AddComment onAddComment={onAddComment} />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    post_date: {
-        textAlign: "center",
-        fontSize: 16,
+    view_main: {
+        height: "100%",
     },
-    post_content: {
-        color: "#555",
+    view_post: {
+        flex: 1,
+        paddingBottom: 35,
     },
 });
 

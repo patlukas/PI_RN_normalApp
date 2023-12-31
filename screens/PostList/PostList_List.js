@@ -29,6 +29,7 @@ const PostList_List = ({
                             date={item.date}
                             content={item.text}
                             comments={item.comments}
+                            imageURL={item.imageURL}
                             canDel={item.canDel}
                             onDel={() => onDelPost(item.id)}
                             onPress={() => onSelectPost(item.id)}
@@ -50,7 +51,6 @@ const styles = StyleSheet.create({
     },
     container_posts: {
         flex: 1,
-        minHeight: 2500,
     },
 });
 

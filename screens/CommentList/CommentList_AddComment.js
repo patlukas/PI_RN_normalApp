@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Button, TextInput } from "react-native-paper";
+import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
+import { TextInput } from "react-native-paper";
 
 const CommentList_AddComment = ({ onAddComment }) => {
     const [text, setText] = React.useState("");
@@ -12,25 +12,54 @@ const CommentList_AddComment = ({ onAddComment }) => {
 
     return (
         <View style={styles.post_container}>
-            <TextInput
-                label="Comment"
-                value={text}
-                onChangeText={(text) => setText(text)}
-                multiline={true}
-            />
-            <Button mode="contained" onPress={beforeOnAddComment}>
-                Add comment
-            </Button>
+            <View style={styles.view_txtInput}>
+                <TextInput
+                    label="Comment"
+                    mode="outlined"
+                    value={text}
+                    onChangeText={(text) => setText(text)}
+                    multiline={true}
+                    outlineStyle={styles.txtInput}
+                />
+            </View>
+            <View style={styles.view_btn}>
+                <TouchableOpacity onPress={beforeOnAddComment}>
+                    <Image
+                        source={require("../../assets/right-arrow.png")}
+                        style={styles.btn_add}
+                    />
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     post_container: {
+        height: "auto",
         width: "100%",
-        paddingVertical: "5%",
-        paddingHorizontal: 10,
-        borderBottomWidth: 2,
+        flexDirection: "row",
+        borderTopWidth: 2,
+        borderColor: "#9462E5",
+        backgroundColor: "#F2F2F2",
+    },
+    view_txtInput: {
+        flex: 1,
+    },
+    view_btn: {
+        width: "auto",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    btn_add: {
+        height: 30,
+        width: 30,
+        marginRight: 10,
+        tintColor: "#9462E5",
+    },
+    txtInput: {
+        borderWidth: 0,
+        backgroundColor: "#F2F2F2",
     },
 });
 
