@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, View, StyleSheet } from "react-native";
 import PostList_Element from "./PostList_Element";
-import PostList_AddPost from "./PostList_AddPost";
+import BarPublishText from "../../components/BarPublishText";
 
 const PostList_List = ({
     data,
@@ -16,10 +16,6 @@ const PostList_List = ({
 
     return (
         <View style={styles.container_main}>
-            <View style={styles.container_addPost}>
-                {canAddPost ? <PostList_AddPost onAddPost={onAddPost} /> : null}
-            </View>
-
             <View style={styles.container_posts}>
                 <FlatList
                     data={data}
@@ -38,6 +34,11 @@ const PostList_List = ({
                         />
                     )}
                 />
+            </View>
+            <View style={styles.container_addPost}>
+                {canAddPost ? (
+                    <BarPublishText label={"Post"} onAdd={onAddPost} />
+                ) : null}
             </View>
         </View>
     );

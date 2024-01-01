@@ -2,11 +2,11 @@ import React from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import { TextInput } from "react-native-paper";
 
-const CommentList_AddComment = ({ onAddComment }) => {
+const BarPublishText = ({ label, onAdd }) => {
     const [text, setText] = React.useState("");
 
-    const beforeOnAddComment = () => {
-        onAddComment(text);
+    const beforeOnAdd = () => {
+        onAdd(text);
         setText("");
     };
 
@@ -14,7 +14,7 @@ const CommentList_AddComment = ({ onAddComment }) => {
         <View style={styles.post_container}>
             <View style={styles.view_txtInput}>
                 <TextInput
-                    label="Comment"
+                    label={label}
                     mode="outlined"
                     value={text}
                     onChangeText={(text) => setText(text)}
@@ -23,9 +23,9 @@ const CommentList_AddComment = ({ onAddComment }) => {
                 />
             </View>
             <View style={styles.view_btn}>
-                <TouchableOpacity onPress={beforeOnAddComment}>
+                <TouchableOpacity onPress={beforeOnAdd}>
                     <Image
-                        source={require("../../assets/right-arrow.png")}
+                        source={require("../assets/right-arrow.png")}
                         style={styles.btn_add}
                     />
                 </TouchableOpacity>
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CommentList_AddComment;
+export default BarPublishText;

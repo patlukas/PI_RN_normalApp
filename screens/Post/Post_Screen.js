@@ -6,7 +6,7 @@ import { api_comment_post_comment } from "../../api/api_comment_post_comment";
 import { api_comment_delete_comment } from "../../api/api_comment_delete_comment";
 import { api_post_delete_post } from "../../api/api_post_delete_post";
 import PostList_Element from "../PostList/PostList_Element";
-import CommentList_AddComment from "../CommentList/CommentList_AddComment";
+import BarPublishText from "../../components/BarPublishText";
 
 const Post_Screen = ({ route, navigation }) => {
     const { accountData } = useContext(AccountDataContext);
@@ -52,7 +52,7 @@ const Post_Screen = ({ route, navigation }) => {
             navigation.navigate("Team_Screen", { id: postData.teamId });
         } else if (postData.playerId !== null) {
             navigation.navigate("Player_Screen", {
-                id: postData.author.playerId,
+                id: postData.playerId,
             });
         }
     };
@@ -73,7 +73,7 @@ const Post_Screen = ({ route, navigation }) => {
                     key={postData.id}
                 />
             </View>
-            <CommentList_AddComment onAddComment={onAddComment} />
+            <BarPublishText label={"Comment"} onAdd={onAddComment} />
         </View>
     );
 };
