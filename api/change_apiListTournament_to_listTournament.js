@@ -7,6 +7,7 @@ export function change_apiListTournament_to_listTournament(apiListTournament) {
             id: tournament.id,
             name: tournament.name,
             city: tournament.city,
+            teamCount: tournament.teamCount,
             date: dateS + "  --  " + dateE,
         });
     }

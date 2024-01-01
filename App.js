@@ -261,7 +261,21 @@ function BarBottom() {
             <Tab.Screen
                 name="TournamentList_Screen"
                 component={TournamentList_Screen}
-                options={{ title: "Tournament list" }}
+                options={{
+                    title: "Tournaments",
+                    tabBarIcon: ({ color }) => {
+                        return (
+                            <Image
+                                source={require("./assets/network.png")}
+                                style={{
+                                    height: 30,
+                                    width: 30,
+                                    tintColor: color,
+                                }}
+                            />
+                        );
+                    },
+                }}
             />
             <Tab.Screen
                 name="MatchList_Screen2"

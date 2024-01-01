@@ -15,6 +15,7 @@ const TournamentList_List = ({ data, navigation }) => {
                     name={item.name}
                     city={item.city}
                     date={item.date}
+                    teamCount={item.teamCount}
                     onPress={() => onSelectTournament(item.id)}
                 />
             )}
