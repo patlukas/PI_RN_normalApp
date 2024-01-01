@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import Tournament_Classic_ListGames from "./Tournament_Classic_ListGames";
-import Tournament_OptionsBar from "./Tournament_OptionsBar";
 import Tournament_Swiss_Table from "./Tournament_Swiss_Table";
 import { api_tournament_get_tournament_swissTable } from "../../api/api_tournament_get_tournament_swissTable";
+import OptionBar from "../../components/OptionBar";
+import MatchList_List from "../MatchList/MatchList_List";
 
 const Tournament_Swiss = ({ tournamentId, navigation, games }) => {
     const { accountData } = useContext(AccountDataContext);
@@ -40,7 +40,7 @@ const Tournament_Swiss = ({ tournamentId, navigation, games }) => {
         );
     } else {
         optionEl = (
-            <Tournament_Classic_ListGames
+            <MatchList_List
                 data={gamesInRound[option]}
                 navigation={navigation}
             />
@@ -50,11 +50,11 @@ const Tournament_Swiss = ({ tournamentId, navigation, games }) => {
     return (
         <View style={{ flex: 1 }}>
             <View style={{ height: "auto" }}>
-                <Tournament_OptionsBar
-                    rounds={listOptions}
-                    setRound={setOption}
+                <OptionBar
+                    options={getOptionNames(listOptions)}
                     selected={option}
-                    roundNames={getOptionNames(listOptions)}
+                    onSelect={setOption}
+                    scrolled={true}
                 />
             </View>
 
@@ -75,16 +75,6 @@ const getOptionNames = (listOptions) => {
 const styles = StyleSheet.create({
     container_draw: {
         flex: 1,
-    },
-    btn_option: {
-        width: "50%",
-        borderBottomWidth: 2,
-        borderTopWidth: 2,
-        borderColor: "#000",
-        backgroundColor: "#ccc",
-        borderLeftWidth: 1,
-        borderLeftColor: "#999",
-        paddingVertical: 3,
     },
 });
 

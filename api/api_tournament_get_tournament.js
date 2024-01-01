@@ -17,12 +17,14 @@ export async function api_tournament_get_tournament(token, tournamentId) {
                 city,
                 games,
                 eliminationAlgorithm,
+                teamCount,
             } = result.data;
             return {
                 name,
                 date: startDate.split("T")[0] + " -- " + endDate.split("T")[0],
                 city,
                 eliminationAlgorithm,
+                teamCount,
                 games: change_apiListGame_to_listGame(games),
             };
         }

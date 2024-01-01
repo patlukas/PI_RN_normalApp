@@ -12,7 +12,7 @@ import { api_team_get_team_listPosts } from "../../api/api_team_get_team_listPos
 import { api_team_get_team_listTournament } from "../../api/api_team_get_team_listTournament";
 import { api_post_delete_post } from "../../api/api_post_delete_post";
 import { useFocusEffect } from "@react-navigation/native";
-import OptionBar from "../OptionBar.js/OptionBar";
+import OptionBar from "../../components/OptionBar";
 
 const Team_Screen = ({ route, navigation }) => {
     const { accountData } = useContext(AccountDataContext);

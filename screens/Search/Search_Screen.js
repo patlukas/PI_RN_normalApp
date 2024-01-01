@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
-import { TextInput} from "react-native-paper";
+import { TextInput } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import OptionBar from "../OptionBar.js/OptionBar";
+import OptionBar from "../../components/OptionBar";
 import PlayerList_List from "../PlayerList/PlayerList_List";
 import { api_player_get_listPlayers } from "../../api/api_player_get_listPlayers";
 import TeamList_List from "../TeamList/TeamList_List";

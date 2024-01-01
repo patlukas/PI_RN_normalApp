@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatList } from "react-native";
-import TournamentList_Element from "./TournamentList_Element";
+import Tournament_Head from "../Tournament/Tournament_Head";
 
 const TournamentList_List = ({ data, navigation }) => {
     const onSelectTournament = (id) => {
@@ -11,7 +11,7 @@ const TournamentList_List = ({ data, navigation }) => {
         <FlatList
             data={data}
             renderItem={({ item }) => (
-                <TournamentList_Element
+                <Tournament_Head
                     name={item.name}
                     city={item.city}
                     date={item.date}

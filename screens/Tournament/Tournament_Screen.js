@@ -4,6 +4,7 @@ import { AccountDataContext } from "../../context/AccountDataContext";
 import { api_tournament_get_tournament } from "../../api/api_tournament_get_tournament";
 import Tournament_Classic from "./Tournament_Classic";
 import Tournament_Swiss from "./Tournament_Swiss";
+import Tournament_Head from "./Tournament_Head";
 
 const Tournament_Screen = ({ route, navigation }) => {
     const { accountData } = useContext(AccountDataContext);
@@ -42,11 +43,12 @@ const Tournament_Screen = ({ route, navigation }) => {
 
     return (
         <View style={styles.main_container}>
-            <View style={styles.container_txt}>
-                <Text style={styles.txt_name}>{tournamentData.name}</Text>
-                <Text style={styles.txt_city}>{tournamentData.city}</Text>
-                <Text style={styles.txt_date}>{tournamentData.date}</Text>
-            </View>
+            <Tournament_Head
+                name={tournamentData.name}
+                city={tournamentData.city}
+                date={tournamentData.date}
+                teamCount={tournamentData.teamCount}
+            />
             <View style={styles.post_container}>{tournamentEl}</View>
         </View>
     );

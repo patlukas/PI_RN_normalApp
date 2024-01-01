@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { api_tournament_get_tournament_rootGame } from "../../api/api_tournament_get_tournament_rootGame";
-import Tournament_Classic_ListGames from "./Tournament_Classic_ListGames";
-import Tournament_OptionsBar from "./Tournament_OptionsBar";
+import MatchList_List from "../MatchList/MatchList_List";
+import OptionBar from "../../components/OptionBar";
 
 const Tournament_Classic = ({ tournamentId, tournamentType, navigation }) => {
     const { accountData } = useContext(AccountDataContext);
@@ -22,24 +22,25 @@ const Tournament_Classic = ({ tournamentId, tournamentType, navigation }) => {
         const rounds = Object.keys(games).reverse();
         setTournamentGamesInRound(games);
         setListRounds(rounds);
-        setRound(rounds[0]);
+        setRound(0);
     };
-
+    console.log(listRounds);
     return (
         <View style={{ flex: 1 }}>
             <View style={{ height: "auto" }}>
-                <Tournament_OptionsBar
-                    rounds={listRounds}
-                    setRound={setRound}
+                <OptionBar
+                    options={getRoundNames(listRounds, tournamentType)}
                     selected={round}
-                    roundNames={getRoundNames(listRounds, tournamentType)}
+                    onSelect={setRound}
+                    scrolled={true}
                 />
             </View>
 
             <View style={styles.container_draw}>
-                <Tournament_Classic_ListGames
-                    data={tournamentGamesInRound[round]}
+                <MatchList_List
+                    data={tournamentGamesInRound[listRounds.length - round - 1]}
                     navigation={navigation}
+                    addEvenSeparator={true}
                 />
             </View>
         </View>
@@ -47,9 +48,8 @@ const Tournament_Classic = ({ tournamentId, tournamentType, navigation }) => {
 };
 
 const getRoundNames = (listRounds, tournamentType) => {
-    console.log("H", tournamentType, listRounds);
     if (tournamentType === "SingleElimination") {
-        return [
+        const options = [
             "Final",
             "Semifinal",
             "Quarterfinal",
@@ -58,10 +58,18 @@ const getRoundNames = (listRounds, tournamentType) => {
             "1/32 finals",
             "1/64 finals",
         ];
+        let list = [];
+        for (const round of listRounds) {
+            list.push(options[parseInt(round)]);
+        }
+
+        return list;
     } else {
         let listRoundNames = [];
         for (const round of listRounds) {
-            listRoundNames.push("Round " + (parseInt(round) + 1));
+            listRoundNames.push(
+                "Round " + (listRounds.length - parseInt(round))
+            );
         }
         console.log(listRoundNames);
         return listRoundNames;

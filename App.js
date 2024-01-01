@@ -27,7 +27,7 @@ export default function App() {
     const [accountData, setAccountData] = useState(
         {
             id: "c0c308dd-0983-489e-8d51-10d753b345cc",
-            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiUGxheWVyVXNlcjAxMyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYzBjMzA4ZGQtMDk4My00ODllLThkNTEtMTBkNzUzYjM0NWNjIiwianRpIjoiNjg3NWVkNDEtZmQ0ZC00ZDUwLWJhYTEtYWZmZTBiNGM3OTEzIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUGxheWVyIiwiZXhwIjoxNzA0MTI1NDI3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.Wt5GkpkAOaQKdj1Lx-IXALIx2UZ1f9l0mhDu5DodTK0",
+            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiUGxheWVyVXNlcjAxMyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYzBjMzA4ZGQtMDk4My00ODllLThkNTEtMTBkNzUzYjM0NWNjIiwianRpIjoiYWZkYzdiYTEtMTM5ZS00MzM5LWEzOGItMDBiZTdkZWMyN2FlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUGxheWVyIiwiZXhwIjoxNzA0MTM4NzEwLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.qnl9Cx8P9_xOl27iUb37YTCJb4Pl-zn-IvOTsCZiYg4",
             username: "PlayerUser013",
             firstName: "Michał",
             lastName: "Jóźwiak",

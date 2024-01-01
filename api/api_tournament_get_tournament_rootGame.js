@@ -35,7 +35,18 @@ const get_list_game = (games, gamesInRound, round = 0) => {
 };
 
 const change_apiGame_to_game = (apiGame) => {
-    const { id, startDate, team1, team2, winnerId } = apiGame;
+    const {
+        id,
+        startDate,
+        team1,
+        team2,
+        winnerId,
+        state,
+        // team1Sets, //TODO
+        // team2Sets, //TODO
+    } = apiGame;
+    const team1Sets = 0,
+        team2Sets = 0; // TODO
     let winner = -1,
         nameH = "",
         nameG = "";
@@ -52,11 +63,19 @@ const change_apiGame_to_game = (apiGame) => {
         date = startDate.split("T")[0];
     }
 
+    const url =
+        global.apiLink.replace("/api", "") + "Upload/UserImages/default.png"; // TODO
+
     return {
         id,
         nameH,
         nameG,
         date,
         winner,
+        resultH: team1Sets,
+        resultG: team2Sets,
+        imageH: url,
+        imageG: url,
+        isLive: state === "ongoing",
     };
 };
