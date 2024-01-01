@@ -5,18 +5,17 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Login_Screen from "./screens/Login/Login_Screen";
 import Signup_Screen from "./screens/Signup/Signup_Screen";
-import TeamList_Screen from "./screens/TeamList/TeamList_Screen";
 import Main_Screen from "./screens/Main/Main_Screen";
 import Team_Screen from "./screens/Team/Team_Screen";
-import GameList_Screen from "./screens/GameList/GameList_Screen";
+import MatchList_Screen from "./screens/MatchList/MatchList_Screen";
 import Match_Screen from "./screens/Match/Match_Screen";
 import TournamentList_Screen from "./screens/TournamentList/TournamentList_Screen";
 import Tournament_Screen from "./screens/Tournament/Tournament_Screen";
 import Player_Screen from "./screens/Player/Player_Screen";
 import Post_Screen from "./screens/Post/Post_Screen";
-import PlayerList_Screen from "./screens/PlayerList/PlayerList_Screen";
 import { AccountDataContext } from "./context/AccountDataContext";
 import { useState } from "react";
+import Search_Screen from "./screens/Search/Search_Screen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,7 +27,7 @@ export default function App() {
     const [accountData, setAccountData] = useState(
         {
             id: "c0c308dd-0983-489e-8d51-10d753b345cc",
-            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiUGxheWVyVXNlcjAxMyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYzBjMzA4ZGQtMDk4My00ODllLThkNTEtMTBkNzUzYjM0NWNjIiwianRpIjoiNzI3ZThmYTMtMjY2My00YTY0LTliZDktMTZiZjBkYWI3ZmRiIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUGxheWVyIiwiZXhwIjoxNzA0MDQ2MzEyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.TxWbJ3drOV_bMimJ3RPlLOQjRJTglkZa7M00u9EX1Zw",
+            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiUGxheWVyVXNlcjAxMyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiYzBjMzA4ZGQtMDk4My00ODllLThkNTEtMTBkNzUzYjM0NWNjIiwianRpIjoiNjg3NWVkNDEtZmQ0ZC00ZDUwLWJhYTEtYWZmZTBiNGM3OTEzIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUGxheWVyIiwiZXhwIjoxNzA0MTI1NDI3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.Wt5GkpkAOaQKdj1Lx-IXALIx2UZ1f9l0mhDu5DodTK0",
             username: "PlayerUser013",
             firstName: "Michał",
             lastName: "Jóźwiak",
@@ -41,22 +40,26 @@ export default function App() {
         // false
     );
     if (accountData === false) {
-        <AccountDataContext.Provider value={{ accountData, setAccountData }}>
-            <NavigationContainer>
-                <Stack.Navigator initialRouteName="Login_Screen">
-                    <Stack.Screen
-                        name="Login_Screen"
-                        component={Login_Screen}
-                        options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                        name="Signup_Screen"
-                        component={Signup_Screen}
-                        options={{ headerShown: false }}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </AccountDataContext.Provider>;
+        return (
+            <AccountDataContext.Provider
+                value={{ accountData, setAccountData }}
+            >
+                <NavigationContainer>
+                    <Stack.Navigator initialRouteName="Login_Screen">
+                        <Stack.Screen
+                            name="Login_Screen"
+                            component={Login_Screen}
+                            options={{ headerShown: false }}
+                        />
+                        <Stack.Screen
+                            name="Signup_Screen"
+                            component={Signup_Screen}
+                            options={{ headerShown: false }}
+                        />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </AccountDataContext.Provider>
+        );
     }
     return (
         <AccountDataContext.Provider value={{ accountData, setAccountData }}>
@@ -72,21 +75,17 @@ export default function App() {
                         component={Main_Screen}
                         options={{ title: "Playmaker" }}
                     />
-                    <Stack.Screen
-                        name="TeamList_Screen"
-                        component={TeamList_Screen}
-                        options={{ title: "Team list" }}
-                    />
+
                     <Stack.Screen
                         name="Team_Screen"
                         component={Team_Screen}
                         options={{ title: "Zespół" }}
                     />
-                    <Stack.Screen
-                        name="GameList_Screen"
-                        component={GameList_Screen}
+                    {/* <Stack.Screen
+                        name="MatchList_Screen"
+                        component={MatchList_Screen}
                         options={{ title: "Game list" }}
-                    />
+                    /> */}
                     <Stack.Screen
                         name="Match_Screen"
                         component={Match_Screen}
@@ -111,11 +110,6 @@ export default function App() {
                         name="Player_Screen"
                         component={Player_Screen}
                         options={{ title: "Player" }}
-                    />
-                    <Stack.Screen
-                        name="PlayerList_Screen"
-                        component={PlayerList_Screen}
-                        options={{ title: "Players list" }}
                     />
                 </Stack.Navigator>
             </NavigationContainer>
@@ -155,18 +149,13 @@ export default function App() {
                             options={{ title: "Main screen" }}
                         />
                         <Stack.Screen
-                            name="TeamList_Screen"
-                            component={TeamList_Screen}
-                            options={{ title: "Team list" }}
-                        />
-                        <Stack.Screen
                             name="Team_Screen"
                             component={Team_Screen}
                             options={{ title: "Zespół" }}
                         />
                         <Stack.Screen
-                            name="GameList_Screen"
-                            component={GameList_Screen}
+                            name="MatchList_Screen"
+                            component={MatchList_Screen}
                             options={{ title: "Game list" }}
                         />
                         <Stack.Screen
@@ -193,11 +182,6 @@ export default function App() {
                             name="Player_Screen"
                             component={Player_Screen}
                             options={{ title: "Player" }}
-                        />
-                        <Stack.Screen
-                            name="PlayerList_Screen"
-                            component={PlayerList_Screen}
-                            options={{ title: "Players list" }}
                         />
                     </Stack.Navigator>
                 </NavigationContainer>
@@ -227,8 +211,46 @@ function BarBottom() {
                             <Image
                                 source={require("./assets/home.png")}
                                 style={{
-                                    height: 25,
-                                    width: 25,
+                                    height: 30,
+                                    width: 30,
+                                    tintColor: color,
+                                }}
+                            />
+                        );
+                    },
+                }}
+            />
+            <Tab.Screen
+                name="Search_Screen"
+                component={Search_Screen}
+                options={{
+                    title: "Search",
+                    tabBarIcon: ({ color }) => {
+                        return (
+                            <Image
+                                source={require("./assets/magnifying-glass.png")}
+                                style={{
+                                    height: 30,
+                                    width: 30,
+                                    tintColor: color,
+                                }}
+                            />
+                        );
+                    },
+                }}
+            />
+            <Tab.Screen
+                name="MatchList_Screen"
+                component={MatchList_Screen}
+                options={{
+                    title: "Games",
+                    tabBarIcon: ({ color }) => {
+                        return (
+                            <Image
+                                source={require("./assets/voleyball.png")}
+                                style={{
+                                    height: 30,
+                                    width: 30,
                                     tintColor: color,
                                 }}
                             />
@@ -242,8 +264,8 @@ function BarBottom() {
                 options={{ title: "Tournament list" }}
             />
             <Tab.Screen
-                name="GameList_Screen"
-                component={GameList_Screen}
+                name="MatchList_Screen2"
+                component={MatchList_Screen}
                 options={{ title: "Game list" }}
             />
         </Tab.Navigator>

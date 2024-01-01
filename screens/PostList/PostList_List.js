@@ -33,6 +33,7 @@ const PostList_List = ({
                             canDel={item.canDel}
                             onDel={() => onDelPost(item.id)}
                             onPress={() => onSelectPost(item.id)}
+                            commentBasic={true}
                             key={item.id}
                         />
                     )}

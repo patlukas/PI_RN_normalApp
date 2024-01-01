@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import CommentList_List from "../CommentList/CommentList_List";
+import CommentList_ListBasic from "../CommentList/CommentList_ListBasic";
 
 const PostList_Element = ({
     date,
@@ -13,6 +14,7 @@ const PostList_Element = ({
     onDelComment = null,
     onPress = null,
     onPressAuthor = null,
+    commentBasic = false,
 }) => {
     let delEl = null;
     if (canDel) {
@@ -25,7 +27,7 @@ const PostList_Element = ({
             </TouchableOpacity>
         );
     }
-    const Post = ({ isReadMore }) => {
+    const Post = ({ additionalText }) => {
         return (
             <>
                 <View style={{ width: "auto" }}>
@@ -46,15 +48,22 @@ const PostList_Element = ({
                     <Text style={styles.txt_content}>{content}</Text>
                     <View style={[styles.view_oneLine, styles.footer]}>
                         <Text style={styles.txt_date}>{date}</Text>
-                        {isReadMore ? (
-                            <Text style={styles.txt_readMore}>Read more</Text>
-                        ) : null}
+                        <Text style={styles.txt_readMore}>
+                            {additionalText}
+                        </Text>
                     </View>
                 </View>
             </>
         );
     };
     const Comments = () => {
+        if (commentBasic) {
+            return (
+                <View style={styles.comment_container}>
+                    <CommentList_ListBasic data={comments} />
+                </View>
+            );
+        }
         return (
             <View style={styles.comment_container}>
                 <CommentList_List data={comments} onDelComment={onDelComment} />
@@ -78,7 +87,7 @@ const PostList_Element = ({
                     onPress={onPressAuthor}
                     style={styles.post_container}
                 >
-                    <Post additionalText={"Read more"} />
+                    <Post additionalText={""} />
                 </TouchableOpacity>
                 <Comments />
             </View>
@@ -87,7 +96,7 @@ const PostList_Element = ({
     return (
         <View>
             <View style={styles.post_container}>
-                <Post additionalText={"Read more"} />
+                <Post additionalText={""} />
             </View>
             <Comments />
         </View>
@@ -96,10 +105,10 @@ const PostList_Element = ({
 
 const styles = StyleSheet.create({
     post_container: {
-        paddingVertical: 7,
+        paddingTop: 7,
         borderTopWidth: 1,
         borderBottomWidth: 1,
-        borderColor: "#9462E5",
+        borderColor: "#ddd",
         flexDirection: "row",
         width: "100%",
     },
@@ -125,10 +134,10 @@ const styles = StyleSheet.create({
     txt_date: {
         flex: 1,
         color: "#666",
-        fontSize: 13,
+        fontSize: 11,
     },
     txt_readMore: {
-        fontSize: 13,
+        fontSize: 11,
         marginRight: 6,
         color: "#9462E5",
     },

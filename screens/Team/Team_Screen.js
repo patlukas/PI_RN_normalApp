@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import { Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import Team_DetailBtn from "./Team_DetailBtn";
-import GameList_List from "../GameList/GameList_List";
+import MatchList_List from "../MatchList/MatchList_List";
 import TournamentList_List from "../TournamentList/TournamentList_List";
 import PlayerList_List from "../PlayerList/PlayerList_List";
 import PostList_List from "../PostList/PostList_List";
@@ -13,6 +12,7 @@ import { api_team_get_team_listPosts } from "../../api/api_team_get_team_listPos
 import { api_team_get_team_listTournament } from "../../api/api_team_get_team_listTournament";
 import { api_post_delete_post } from "../../api/api_post_delete_post";
 import { useFocusEffect } from "@react-navigation/native";
+import OptionBar from "../OptionBar.js/OptionBar";
 
 const Team_Screen = ({ route, navigation }) => {
     const { accountData } = useContext(AccountDataContext);
@@ -34,8 +34,7 @@ const Team_Screen = ({ route, navigation }) => {
     }, [accountData, navigation]);
     const teamId = route.params.id;
 
-    const loadTeamData = async () => {
-        setTeamData(await api_team_get_team(accountData.token, teamId));
+    const loadPosts = async () => {
         setListPost(
             await api_team_get_team_listPosts(
                 accountData.token,
@@ -43,6 +42,11 @@ const Team_Screen = ({ route, navigation }) => {
                 accountData.id
             )
         );
+    };
+
+    const loadTeamData = async () => {
+        setTeamData(await api_team_get_team(accountData.token, teamId));
+        await loadPosts();
         setListTournament(
             await api_team_get_team_listTournament(accountData.token, teamId)
         );
@@ -50,24 +54,12 @@ const Team_Screen = ({ route, navigation }) => {
 
     const onAddPost = async (text) => {
         await api_post_post_post(accountData.token, accountData.id, text);
-        setListPost(
-            await api_team_get_team_listPosts(
-                accountData.token,
-                teamId,
-                accountData.id
-            )
-        );
+        await loadPosts();
     };
 
     const onDelPost = async (idPost) => {
         await api_post_delete_post(accountData.token, idPost);
-        setListPost(
-            await api_team_get_team_listPosts(
-                accountData.token,
-                teamId,
-                accountData.id
-            )
-        );
+        await loadPosts();
     };
 
     if (teamData === false) return null;
@@ -85,7 +77,7 @@ const Team_Screen = ({ route, navigation }) => {
         );
     } else if (detailIndex == 1) {
         detail_el = (
-            <GameList_List data={teamData.listGame} navigation={navigation} />
+            <MatchList_List data={teamData.listGame} navigation={navigation} />
         );
     } else if (detailIndex == 2) {
         detail_el = (
@@ -106,36 +98,31 @@ const Team_Screen = ({ route, navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.view_mainData}>
-                <Text style={styles.txt_name}>
-                    Name: {teamData.teamName} [{teamData.shortTeamName}]
-                </Text>
-                <Text style={styles.txt_city}>City: {teamData.city}</Text>
-                <Text style={styles.txt_city}>
-                    Coach: {teamData.coachFullName}
-                </Text>
+                <Image
+                    style={styles.image}
+                    source={{
+                        uri:
+                            teamData.imageURL +
+                            `?timestamp=${parseInt(
+                                new Date().getTime() / 60000
+                            )}`,
+                    }}
+                />
+                <View>
+                    <Text style={styles.txt_name}>
+                        {teamData.teamName} [{teamData.shortTeamName}]
+                    </Text>
+                    <Text style={styles.txt_city}>{teamData.city}</Text>
+                    <Text style={styles.txt_city}>
+                        Coach: {teamData.coachFullName}
+                    </Text>
+                </View>
             </View>
-            <View style={styles.Team_DetailBtnContainer}>
-                <Team_DetailBtn
-                    title="Posts"
-                    onPress={() => setDetailIndex(0)}
-                    isSelected={detailIndex == 0}
-                />
-                <Team_DetailBtn
-                    title="Matches"
-                    onPress={() => setDetailIndex(1)}
-                    isSelected={detailIndex == 1}
-                />
-                <Team_DetailBtn
-                    title="Tournaments"
-                    onPress={() => setDetailIndex(2)}
-                    isSelected={detailIndex == 2}
-                />
-                <Team_DetailBtn
-                    title="Players"
-                    onPress={() => setDetailIndex(3)}
-                    isSelected={detailIndex == 3}
-                />
-            </View>
+            <OptionBar
+                options={["Posts", "Matches", "Tournaments", "Players"]}
+                selected={detailIndex}
+                onSelect={setDetailIndex}
+            />
             <View style={styles.detailContainer}>{detail_el}</View>
         </View>
     );
@@ -146,25 +133,30 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     view_mainData: {
+        flexDirection: "row",
         height: "auto",
-        backgroundColor: "#ccf",
-        paddingHorizontal: 15,
-        paddingVertical: "5%",
+        paddingRight: 15,
+        paddingLeft: 8,
+        paddingBottom: "5%",
+        paddingTop: 10,
     },
     txt_name: {
-        textAlign: "center",
-        fontSize: 18,
-        fontWeight: 700,
+        fontSize: 20,
+        fontWeight: "700",
+        paddingTop: 5,
     },
     txt_city: {
-        textAlign: "center",
-        fontSize: 16,
-    },
-    Team_DetailBtnContainer: {
-        flexDirection: "row",
+        fontSize: 14,
     },
     detailContainer: {
         flex: 1,
+    },
+    image: {
+        height: 60,
+        width: 60,
+        margin: 5,
+        marginRight: 10,
+        borderRadius: 30,
     },
 });
 

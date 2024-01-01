@@ -14,8 +14,9 @@ const TeamList_List = ({ data, navigation }) => {
                 <TeamList_Element
                     name={item.name}
                     shortName={item.shortName}
-                    city={item.city}
-                    coachFullName={item.coachFullName}
+                    // city={item.city}
+                    // coachFullName={item.coachFullName}
+                    imageURL={item.imageURL}
                     onPress={() => onSelectTeam(item.id)}
                 />
             )}

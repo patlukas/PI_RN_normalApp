@@ -45,11 +45,9 @@ const styles = StyleSheet.create({
     container_main: {
         width: "100%",
         paddingRight: 10,
-        paddingVertical: 5,
+        paddingTop: 5,
+        paddingBottom: 9,
         flexDirection: "row",
-        borderWidth: 1,
-        borderTopWidth: 0,
-        borderColor: "#9462E5",
     },
     container_right: {
         flex: 1,

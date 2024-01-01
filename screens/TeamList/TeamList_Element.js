@@ -1,40 +1,44 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { Text } from "react-native-paper";
-import Card from "../../components/Card";
+import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
 
-const TeamList_Element = ({
-    name,
-    city,
-    shortName,
-    coachFullName,
-    onPress,
-}) => {
+const TeamList_Element = ({ name, shortName, imageURL, onPress }) => {
     return (
-        <Card backgroundColor={"#ccf"} onPress={onPress}>
-            <Text style={styles.txt_name}>
-                {name} [{shortName}]
-            </Text>
-            <Text style={styles.txt_city}>{city}</Text>
-            <Text style={styles.txt_coach}>{coachFullName}</Text>
-        </Card>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
+            <Image
+                style={styles.image}
+                source={{
+                    uri:
+                        imageURL +
+                        `?timestamp=${parseInt(new Date().getTime() / 60000)}`,
+                }}
+            />
+            <View style={styles.view_name}>
+                <Text style={styles.txt_name}>
+                    {name} [{shortName}]
+                </Text>
+            </View>
+        </TouchableOpacity>
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flexDirection: "row",
+        width: "100%",
+        marginRight: 8,
+    },
+    image: {
+        height: 40,
+        width: 40,
+        margin: 5,
+        borderRadius: 30,
+    },
     txt_name: {
-        textAlign: "center",
-        fontSize: 18,
-        fontWeight: 700,
+        fontSize: 15,
     },
-    txt_city: {
-        textAlign: "center",
-        fontSize: 16,
-    },
-    txt_coach: {
-        textAlign: "center",
-        fontSize: 14,
-        color: "#642",
+    view_name: {
+        justifyContent: "center",
+        flex: 1,
     },
 });
 

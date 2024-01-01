@@ -1,59 +1,59 @@
 import React from "react";
-import { StyleSheet, Text, Image, View } from "react-native";
-import Card from "../../components/Card";
+import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
 
 const PlayerList_Element = ({
     name,
-    position,
-    number,
     shortTeamName,
     imageURL,
     onPress,
+    number,
+    position,
 }) => {
     return (
-        <Card backgroundColor="#fcf" onPress={onPress}>
-            <View style={styles.container}>
-                <View>
-                    <Image
-                        style={styles.img}
-                        source={{
-                            uri:
-                                imageURL + `?timestamp=${new Date().getTime()}`,
-                        }}
-                    />
-                </View>
-                <View style={styles.container_txt}>
-                    <Text style={styles.player_name}>
-                        {name} [{shortTeamName}]
-                    </Text>
-                    <Text style={styles.player_position}>
-                        {number} | {position}
-                    </Text>
-                </View>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
+            <Image
+                style={styles.image}
+                source={{
+                    uri:
+                        imageURL +
+                        `?timestamp=${parseInt(new Date().getTime() / 60000)}`,
+                }}
+            />
+            <View style={styles.view_name}>
+                <Text style={styles.txt_name}>
+                    {name} [{shortTeamName}]
+                </Text>
+                <Text style={styles.txt_detail}>
+                    {number} | {position}
+                </Text>
             </View>
-        </Card>
+        </TouchableOpacity>
     );
 };
 
 const styles = StyleSheet.create({
-    player_name: {
-        textAlign: "center",
-        fontSize: 18,
-        fontWeight: "bold",
-    },
-    player_position: {
-        textAlign: "center",
-        fontSize: 16,
-    },
     container: {
         flexDirection: "row",
+        width: "100%",
+        marginRight: 8,
     },
-    img: {
-        width: 50,
-        height: 50,
+    image: {
+        height: 40,
+        width: 40,
+        margin: 5,
+        borderRadius: 30,
     },
-    container_txt: {
+    txt_name: {
+        fontSize: 15,
+        fontWeight: "500",
+    },
+    txt_detail: {
+        fontSize: 15,
+    },
+    view_name: {
+        justifyContent: "center",
         flex: 1,
+        marginLeft: 8,
     },
 });
 

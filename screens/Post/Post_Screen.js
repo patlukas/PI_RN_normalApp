@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     },
     view_post: {
         flex: 1,
-        paddingBottom: 35,
+        paddingBottom: 105,
     },
 });
 

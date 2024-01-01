@@ -14,6 +14,9 @@ export async function api_team_get_team(token, teamId) {
             const games = team1Games.concat(team2Games);
             let listPlayer = change_apiListPlayer_to_listPlayer(players);
             let listGame = change_apiListGame_to_listGame(games);
+            const url =
+                global.apiLink.replace("/api", "") +
+                "Upload/UserImages/default.png"; // TODO
             return {
                 id,
                 teamName,
@@ -22,6 +25,7 @@ export async function api_team_get_team(token, teamId) {
                 coachFullName,
                 listPlayer,
                 listGame,
+                imageURL: url
             };
         }
     } catch (error) {

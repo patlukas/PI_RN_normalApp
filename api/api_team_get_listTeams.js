@@ -8,10 +8,14 @@ export async function api_team_get_listTeams(token) {
         });
         if (result.status == 200) {
             for (const team of result.data) {
+                const url =
+                    global.apiLink.replace("/api", "") +
+                    "Upload/UserImages/default.png"; // TODO
                 listTeam.push({
                     id: team.id,
                     name: team.teamName,
                     shortName: team.shortTeamName,
+                    imageURL: url,
                     city: team.city,
                     coachFullName: team.coachFullName,
                 });
