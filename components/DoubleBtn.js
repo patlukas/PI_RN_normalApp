@@ -1,6 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Pressable } from "react-native";
-import { TextInput, Text } from "react-native-paper";
+import { StyleSheet, View, Pressable, Text } from "react-native";
 
 const DoubleBtn = ({ title1, title2, onPress1, onPress2 }) => {
     return (

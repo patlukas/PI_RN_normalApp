@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { api_tournament_get_tournament } from "../../api/api_tournament_get_tournament";
 import Tournament_Classic from "./Tournament_Classic";

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AccountDataContext } from "../../context/AccountDataContext";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { api_player_get_player } from "../../api/api_player_get_player";
 import Player_Detail from "./Player_Detail";
 import PostList_List from "../PostList/PostList_List";

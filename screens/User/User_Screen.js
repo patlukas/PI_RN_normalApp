@@ -7,7 +7,7 @@ import OptionBar from "../../components/OptionBar";
 import Settings from "../../components/Settings";
 import { api_user_get_user } from "../../api/api_user_get_user";
 
-const User_Screen = ({ route, navigation }) => {
+const User_Screen = ({ route }) => {
     const { accountData } = useContext(AccountDataContext);
     const [userData, setUserData] = useState(false);
 

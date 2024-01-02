@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import Player_Screen from "../Player/Player_Screen";
 import Team_Screen from "../Team/Team_Screen";

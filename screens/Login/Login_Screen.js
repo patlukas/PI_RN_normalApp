@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
-import { TextInput, Button, Text } from "react-native-paper";
+import { TextInput, Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { api_auth_login } from "../../api/api_auth_login";
 import DoubleBtn from "../../components/DoubleBtn";
