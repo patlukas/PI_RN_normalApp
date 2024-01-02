@@ -1,8 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import TeamList_Element from "../TeamList/TeamList_Element";
 
-const Player_Detail = ({ data, onPressTeam }) => {
+const User_Detail = ({ data }) => {
     return (
         <View style={styles.head_container}>
             <Image
@@ -15,16 +14,7 @@ const Player_Detail = ({ data, onPressTeam }) => {
             />
             <View>
                 <Text style={styles.txt_name}>{data.name}</Text>
-                <Text style={styles.txt_username}>{data.username}</Text>
-                <Text style={styles.txt_position}>
-                    {data.number} | {data.position}
-                </Text>
-                <TeamList_Element
-                    name={""}
-                    shortName={data.shortTeamName}
-                    imageURL={data.teamImageURL}
-                    onPress={onPressTeam}
-                />
+                <Text style={styles.txt_username}>{data.userName}</Text>
             </View>
         </View>
     );
@@ -49,9 +39,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "#444",
     },
-    txt_position: {
-        fontSize: 18,
-    },
 });
 
-export default Player_Detail;
+export default User_Detail;

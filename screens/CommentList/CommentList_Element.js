@@ -9,6 +9,7 @@ const CommentList_Element = ({
     imageURL,
     canDel,
     onDel,
+    addBorder,
 }) => {
     let delEl = null;
     if (canDel && onDel !== null) {
@@ -22,11 +23,18 @@ const CommentList_Element = ({
         );
     }
     return (
-        <View style={styles.container_main}>
+        <View
+            style={[
+                styles.container_main,
+                addBorder ? styles.container_main_border : null,
+            ]}
+        >
             <Image
                 style={styles.image_profile}
                 source={{
-                    uri: imageURL + `?timestamp=${new Date().getTime()}`,
+                    uri:
+                        imageURL +
+                        `?timestamp=${parseInt(new Date().getTime() / 60000)}`,
                 }}
             />
             <View style={styles.container_right}>
@@ -48,6 +56,10 @@ const styles = StyleSheet.create({
         paddingTop: 5,
         paddingBottom: 9,
         flexDirection: "row",
+    },
+    container_main_border: {
+        borderBottomWidth: 1,
+        borderColor: "#ddd",
     },
     container_right: {
         flex: 1,

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import MatchList_List from "../MatchList/MatchList_List";
@@ -13,6 +13,7 @@ import { api_team_get_team_listTournament } from "../../api/api_team_get_team_li
 import { api_post_delete_post } from "../../api/api_post_delete_post";
 import { useFocusEffect } from "@react-navigation/native";
 import OptionBar from "../../components/OptionBar";
+import Settings from "../../components/Settings";
 
 const Team_Screen = ({ route, navigation }) => {
     const { accountData } = useContext(AccountDataContext);
@@ -64,6 +65,24 @@ const Team_Screen = ({ route, navigation }) => {
 
     if (teamData === false) return null;
 
+    let settingsBtn = null;
+    if (route.params.id === accountData.teamId) {
+        settingsBtn = (
+            <TouchableOpacity
+                onPress={() => setDetailIndex(4)}
+                style={{ flexDirection: "column-reverse" }}
+            >
+                <Image
+                    source={require("../../assets/settings.png")}
+                    style={[
+                        styles.btn_settings,
+                        detailIndex == 4 ? styles.btn_settings_selected : null,
+                    ]}
+                />
+            </TouchableOpacity>
+        );
+    }
+
     let detail_el = [];
     if (detailIndex == 0) {
         detail_el = (
@@ -93,6 +112,8 @@ const Team_Screen = ({ route, navigation }) => {
                 navigation={navigation}
             />
         );
+    } else if (detailIndex == 4) {
+        detail_el = <Settings afterChangeImage={loadTeamData} />;
     }
 
     return (
@@ -108,14 +129,19 @@ const Team_Screen = ({ route, navigation }) => {
                             )}`,
                     }}
                 />
-                <View>
+                <View style={{ flex: 1 }}>
                     <Text style={styles.txt_name}>
                         {teamData.teamName} [{teamData.shortTeamName}]
                     </Text>
-                    <Text style={styles.txt_city}>{teamData.city}</Text>
-                    <Text style={styles.txt_city}>
-                        Coach: {teamData.coachFullName}
-                    </Text>
+                    <View style={styles.container_settings}>
+                        <View style={styles.container_city_and_coach}>
+                            <Text style={styles.txt_city}>{teamData.city}</Text>
+                            <Text style={styles.txt_city}>
+                                Coach: {teamData.coachFullName}
+                            </Text>
+                        </View>
+                        {settingsBtn}
+                    </View>
                 </View>
             </View>
             <OptionBar
@@ -157,6 +183,21 @@ const styles = StyleSheet.create({
         margin: 5,
         marginRight: 10,
         borderRadius: 30,
+    },
+    btn_settings: {
+        height: 30,
+        width: 30,
+        marginRight: 5,
+        tintColor: "#888",
+    },
+    btn_settings_selected: {
+        tintColor: "#9462E5",
+    },
+    container_settings: {
+        flexDirection: "row",
+    },
+    container_city_and_coach: {
+        flex: 1,
     },
 });
 

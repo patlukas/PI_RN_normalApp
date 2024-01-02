@@ -21,7 +21,7 @@ const Tournament_Screen = ({ route, navigation }) => {
             )
         );
     };
-
+    console.log("To", tournamentData);
     let tournamentEl = null;
     if (tournamentData.eliminationAlgorithm === "SwissElimination") {
         tournamentEl = (

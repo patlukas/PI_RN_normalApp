@@ -7,10 +7,12 @@ export async function api_player_get_player(token, playerId) {
         });
         if (result.status == 200) {
             const { id, number, position, teamId, userId, user } = result.data;
-            const { teamName } = result.data.team;
+            const { teamName, shortTeamName } = result.data.team;
             const { userName, firstName, lastName, imageURL } = user;
             const url = global.apiLink.replace("/api", "") + imageURL;
-            console.log(url);
+            const urlTeam =
+                global.apiLink.replace("/api", "") +
+                result.data.team.user.imageUrl;
             return {
                 id,
                 number,
@@ -18,6 +20,8 @@ export async function api_player_get_player(token, playerId) {
                 teamId,
                 teamName,
                 userId,
+                shortTeamName,
+                teamImageURL: urlTeam,
                 name: firstName + " " + lastName,
                 username: userName,
                 imageURL: url,

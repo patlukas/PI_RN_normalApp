@@ -8,7 +8,7 @@ import {
 import { TextInput, Button, Text } from "react-native-paper";
 import { AccountDataContext } from "../../context/AccountDataContext";
 import { api_auth_register } from "../../api/api_auth_register";
-import DoubleBtn from "../Login/DoubleBtn";
+import DoubleBtn from "../../components/DoubleBtn";
 
 const Signup_Screen = ({ navigation }) => {
     const { accountData, setAccountData } = useContext(AccountDataContext);

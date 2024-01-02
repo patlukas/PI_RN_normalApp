@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import CommentList_Element from "./CommentList_Element";
 
-const CommentList_List = ({ data, onDelComment = null }) => {
+const CommentList_List = ({ data, onDelComment = null, addBorder = false }) => {
     return (
         <View>
             <FlatList
@@ -16,6 +16,7 @@ const CommentList_List = ({ data, onDelComment = null }) => {
                         imageURL={item.imageURL}
                         canDel={item.canDel}
                         onDel={onDelComment}
+                        addBorder={addBorder}
                     />
                 )}
             />

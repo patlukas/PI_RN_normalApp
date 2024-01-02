@@ -42,29 +42,30 @@ const change_apiGame_to_game = (apiGame) => {
         team2,
         winnerId,
         state,
-        // team1Sets, //TODO
-        // team2Sets, //TODO
+        team1Sets,
+        team2Sets,
     } = apiGame;
-    const team1Sets = 0,
-        team2Sets = 0; // TODO
     let winner = -1,
         nameH = "",
-        nameG = "";
+        nameG = "",
+        url1 = "",
+        url2 = "";
     if (team1 !== null) {
         if (team1.id == winnerId) winner = 0;
         nameH = team1.teamName;
+        url1 = team1.user.imageUrl;
     }
     if (team2 !== null) {
         if (team2.id == winnerId) winner = 1;
         nameG = team2.teamName;
+        url2 = team2.user.imageUrl;
     }
     let date = "";
     if (startDate !== "0001-01-01T00:00:00") {
         date = startDate.split("T")[0];
     }
 
-    const url =
-        global.apiLink.replace("/api", "") + "Upload/UserImages/default.png"; // TODO
+    const baseUrl = global.apiLink.replace("/api", "");
 
     return {
         id,
@@ -74,8 +75,8 @@ const change_apiGame_to_game = (apiGame) => {
         winner,
         resultH: team1Sets,
         resultG: team2Sets,
-        imageH: url,
-        imageG: url,
+        imageH: baseUrl + url1,
+        imageG: baseUrl + url2,
         isLive: state === "ongoing",
     };
 };

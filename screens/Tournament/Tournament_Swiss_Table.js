@@ -52,6 +52,7 @@ const Row = ({ place, name, paused, points, onPress }) => {
 const RowHead = () => {
     return (
         <View style={styles.row_container_head}>
+            <View style={styles.row_view_0} />
             <View style={styles.row_view_1}>
                 <Text style={styles.row_txt_bold}>Team</Text>
             </View>

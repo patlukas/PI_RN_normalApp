@@ -1,9 +1,9 @@
 import React from "react";
 import { FlatList, View } from "react-native";
-import MatchList_Element from "./MatchList_Element";
+import Match_Head from "../Match/Match_Head";
 
 const MatchList_List = ({ data, navigation, addEvenSeparator = false }) => {
-    const onSelectTeam = (id) => {
+    const onSelect = (id) => {
         navigation.navigate("Match_Screen", { id });
     };
     console.log(addEvenSeparator);
@@ -16,7 +16,7 @@ const MatchList_List = ({ data, navigation, addEvenSeparator = false }) => {
                         marginBottom: addEvenSeparator && index % 2 ? 40 : 0,
                     }}
                 >
-                    <MatchList_Element
+                    <Match_Head
                         nameH={item.nameH}
                         nameG={item.nameG}
                         resultH={item.resultH}
@@ -25,7 +25,7 @@ const MatchList_List = ({ data, navigation, addEvenSeparator = false }) => {
                         imageG={item.imageG}
                         date={item.date}
                         isLive={item.isLive}
-                        onPress={() => onSelectTeam(item.id)}
+                        onPress={() => onSelect(item.id)}
                     />
                 </View>
             )}

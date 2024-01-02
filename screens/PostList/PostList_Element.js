@@ -35,7 +35,10 @@ const PostList_Element = ({
                         style={styles.image_profile}
                         source={{
                             uri:
-                                imageURL + `?timestamp=${new Date().getTime()}`,
+                                imageURL +
+                                `?timestamp=${parseInt(
+                                    new Date().getTime() / 60000
+                                )}`,
                         }}
                     />
                 </View>

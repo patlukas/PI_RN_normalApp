@@ -8,11 +8,14 @@ import { api_player_get_player_listPosts } from "../../api/api_player_get_player
 import { api_post_post_post } from "../../api/api_post_post_post";
 import { api_post_delete_post } from "../../api/api_post_delete_post";
 import { useFocusEffect } from "@react-navigation/native";
+import OptionBar from "../../components/OptionBar";
+import Settings from "../../components/Settings";
 
 const Player_Screen = ({ route, navigation }) => {
     const { accountData } = useContext(AccountDataContext);
     const [playerData, setPlayerData] = useState(false);
     const [listPosts, setListPosts] = useState([]);
+    const [option, setOption] = useState(0);
 
     useFocusEffect(
         React.useCallback(() => {
@@ -52,27 +55,39 @@ const Player_Screen = ({ route, navigation }) => {
         await api_post_delete_post(accountData.token, idPost);
         await loadData_posts();
     };
+    let selectedScreen = null;
+    if (option === 0) {
+        selectedScreen = (
+            <PostList_List
+                data={listPosts}
+                navigation={navigation}
+                canAddPost={route.params.id === accountData.playerId}
+                onAddPost={onAddPost}
+                onDelPost={onDelPost}
+            />
+        );
+    } else if (option === 1) {
+        selectedScreen = <Settings afterChangeImage={loadData_player} />;
+    }
+
+    let options = ["Posts"];
+    if (route.params.id === accountData.playerId) {
+        options.push("Settings");
+    }
 
     if (playerData === false) return null;
     return (
         <View style={styles.container_main}>
-            <View style={styles.container_head}>
-                <Player_Detail
-                    data={playerData}
-                    onPressTeam={() => onPressTeam(playerData.id)}
-                    canChangeImage={route.params.id === accountData.playerId}
-                    afterChangeImage={loadData_player}
-                />
-            </View>
-            <View style={styles.container_posts}>
-                <PostList_List
-                    data={listPosts}
-                    navigation={navigation}
-                    canAddPost={route.params.id === accountData.playerId}
-                    onAddPost={onAddPost}
-                    onDelPost={onDelPost}
-                />
-            </View>
+            <Player_Detail
+                data={playerData}
+                onPressTeam={() => onPressTeam(playerData.id)}
+            />
+            <OptionBar
+                options={options}
+                selected={option}
+                onSelect={setOption}
+            />
+            <View style={styles.container_posts}>{selectedScreen}</View>
         </View>
     );
 };
