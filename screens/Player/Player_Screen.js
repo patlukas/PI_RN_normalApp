@@ -80,7 +80,7 @@ const Player_Screen = ({ route, navigation }) => {
         <View style={styles.container_main}>
             <Player_Detail
                 data={playerData}
-                onPressTeam={() => onPressTeam(playerData.id)}
+                onPressTeam={() => onPressTeam(playerData.teamId)}
             />
             <OptionBar
                 options={options}

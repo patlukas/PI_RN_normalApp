@@ -45,7 +45,7 @@ export async function api_game_get_game(token, gameId) {
                 setNow: currentSet,
                 winner,
                 date,
-                isLive: state === "ongiong",
+                isLive: state == "ongiong",
                 teams: [
                     {
                         id: team1Id,

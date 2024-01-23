@@ -14,8 +14,8 @@ export function change_apiListGame_to_listGame(apiListGame) {
             if (winnerId === team1Id) winner = 0;
             else if (winnerId === team2Id) winner = 1;
         }
-        let date = startDate.replace("T", " ");
-        if (date === "0001-01-01 00:00:00") date = "";
+        let date = startDate.split("T")[0];
+        if (date === "0001-01-01") date = "";
         const round = "round" in game ? game.round : null;
         listGame.push({
             id,
@@ -26,7 +26,7 @@ export function change_apiListGame_to_listGame(apiListGame) {
             imageH: url1,
             imageG: url2,
             date,
-            isLive: state === "ongoing",
+            isLive: state == "ongoing",
             winner,
             round,
         });

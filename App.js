@@ -21,7 +21,8 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    global.apiLink = "http://192.168.0.199:8080/api/";
+    global.apiLink = "http://192.168.226.182:8080/api/";
+    // global.apiLink = "http://localhost:8081/api/";
 
     const [accountData, setAccountData] = useState(
         // {
