@@ -4,22 +4,22 @@ Aplikacja mobilna jest jedną z części pracy inżynierskiej i została napisan
 
 # Wygnąd programu
 ### Ekran logowania
-![](screenshots/ss1.jpg)
+<img src="screenshots/ss1.jpg" height="400">
 
 ### Ekran do wyszukiwania zespołów i graczy
-![](screenshots/ss2.jpg) 
+<img src="screenshots/ss2.jpg" height="400">
 
 ### Ekran z listą gier
-![](screenshots/ss3.jpg)
+<img src="screenshots/ss3.jpg" height="400">
 
 ### Ekran meczu
-![](screenshots/ss4.jpg)
+<img src="screenshots/ss4.jpg" height="400">
 
 ### Ekran z listą turniejów
-![](screenshots/ss5.jpg)
+<img src="screenshots/ss5.jpg" height="400">
 
 ### Ekran ze szczegółami turnieju
-![](screenshots/ss6.jpg)
+<img src="screenshots/ss6.jpg" height="400">
 
 ### Ekran z profilem zawodnika
-![](screenshots/ss7.jpg)
+<img src="screenshots/ss7.jpg" height="400">
